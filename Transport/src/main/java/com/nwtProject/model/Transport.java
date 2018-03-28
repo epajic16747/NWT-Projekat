@@ -40,6 +40,7 @@ public class Transport {
 
     public Transport(int idTransporta, Double cijenaMax, String datum,  int idAutoprevoznika, String status,
     		int idKompanije, String naziv ) {
+        super();
         this.idTransporta = idTransporta;
         this.cijenaMax = cijenaMax;
         this.datum = datum;
