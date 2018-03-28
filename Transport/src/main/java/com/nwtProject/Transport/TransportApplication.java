@@ -11,8 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.nwtProject.model.Ponuda;
 import com.nwtProject.model.Transport;
+import com.nwtProject.model.PutniNalog;
+import com.nwtProject.repository.PonudaRepository;
 import com.nwtProject.repository.TransportRepository;
+import com.nwtProject.repository.PutniNalogRepository;
 
 @SpringBootApplication
 @ComponentScan({"com.nwtProject"})
@@ -22,6 +26,10 @@ public class TransportApplication {
 
 	 @Autowired
 	    private TransportRepository transportRepository;
+	 @Autowired
+	    private PonudaRepository ponudaRepository;
+	 @Autowired
+	    private PutniNalogRepository putninalogRepository;
 
 	
 	
@@ -50,13 +58,26 @@ public class TransportApplication {
 	    }
 	   
 	   @Bean
-		public CommandLineRunner demo(TransportRepository repository) {
+		public CommandLineRunner transportBean(TransportRepository repository) {
 			return (args) -> {
 				// save a couple of transports
 				repository.save(new Transport(1, 250.3, "03.01.2017",2, "slobodan", 12, "Transport robe"));
-				repository.save(new Transport(1, 250.3, "03.01.2017",2, "slobodan", 12, "Transport robe"));
-				repository.save(new Transport(1, 250.3, "03.01.2017",2, "slobodan", 12, "Transport robe"));
+			};
+			}
+	   
+	   
+	   @Bean
+		public CommandLineRunner ponudaBean(PonudaRepository ponudarepository) {
+			return (args) -> {
 				
+				ponudarepository.save(new Ponuda(1, 339.80 , "automobil",1, 2));
+			};
+			}
+	   @Bean
+		public CommandLineRunner putninalogBean(PutniNalogRepository putninalogrepository) {
+			return (args) -> {
+				
+				putninalogrepository.save(new PutniNalog(1, "Živinice -> Sarajevo",3, ));
 			};
 			}
 }
