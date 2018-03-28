@@ -1,4 +1,4 @@
-package Modeli;
+package com.nwtProject.KorisnikRecenzija.Models;
 
 
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ public class Korisnik {
 	@Id
 	@Column(name="IdKorisnika")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idKorisnika;
+	private Long idKorisnika;
 	
 	@Column(name="username")
 	private String username;
@@ -33,11 +33,27 @@ public class Korisnik {
 	@Column(name="idAutoprevoznika")
 	private int idAutoprevoznika;
 
-	public int getIdKorisnika() {
+	
+	protected Korisnik() {
+		
+	}
+	
+	public Korisnik(Long idKorisnika, String username, String password, String email, int idKompanije,
+			int idAutoprevoznika) {
+		//super();
+		this.idKorisnika = idKorisnika;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.idKompanije = idKompanije;
+		this.idAutoprevoznika = idAutoprevoznika;
+	}
+
+	public Long getIdKorisnika() {
 		return idKorisnika;
 	}
 
-	public void setIdKorisnika(int idKorisnika) {
+	public void setIdKorisnika(Long idKorisnika) {
 		this.idKorisnika = idKorisnika;
 	}
 
