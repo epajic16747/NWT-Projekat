@@ -24,11 +24,11 @@ public class KorisnikRecenzijaApplication {
 	public CommandLineRunner demo(KorisnikRepozitorij repository) {
 		return (args) -> {
 			// save a couple of customers
-			repository.save(new Korisnik((long) 10000,"a","Jack", "Bauer",1, 1));
-			repository.save(new Korisnik((long) 10001,"a","Jack", "Bauer",1, 1));
-			repository.save(new Korisnik((long) 10002,"a","Jack", "Bauer",1, 1));
-			repository.save(new Korisnik((long) 10003,"a","Jack", "Bauer",1, 1));
-			repository.save(new Korisnik((long) 10004,"a","Jack", "Bauer",1, 1));
+			repository.save(new Korisnik((long) 1,"a","Jack", "Bauer",1, 1));
+			repository.save(new Korisnik((long) 2,"a","Jack", "Bauer1",1, 1));
+			repository.save(new Korisnik((long) 3,"a","Jack", "Bauer2",1, 1));
+			repository.save(new Korisnik((long) 4,"a","Jack", "Bauer3",1, 1));
+			repository.save(new Korisnik((long) 5,"a","Jack", "Bauer4",1, 1));
 
 			// fetch all customers
 			log.info("Customers found with findAll():");
