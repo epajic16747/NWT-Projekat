@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.Column;
 
 
@@ -18,12 +20,20 @@ public class Korisnik {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idKorisnika;
 	
+    @NotNull
+    @Size(min=5, max=45)
 	@Column(name="username")
 	private String username;
 	
+    
+    @NotNull
+    @Size(min=10, max=45)
 	@Column(name="password")
 	private String password;
 	
+    
+    @NotNull
+    @Size(min=20, max=100)
 	@Column(name="email")
 	private String email;
 	

@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.Column;
 
 @Entity
@@ -18,9 +20,13 @@ public class Recenzija {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idRecenzije;
 	
+    @NotNull
+    @Size(min=100, max=1500)
 	@Column(name="komentar")
 	private String komentar;
 	
+    @NotNull
+    @Size(min=1, max=10)
 	@Column(name="ocjena")
 	private int ocjena;
 	
