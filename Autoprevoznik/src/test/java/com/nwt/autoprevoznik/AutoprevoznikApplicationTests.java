@@ -1,4 +1,4 @@
-package com.nwtProject.Autoprevoznik;
+package com.nwt.autoprevoznik;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
