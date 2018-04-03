@@ -17,11 +17,14 @@ import com.nwtProject.KorisnikRecenzija.Repositories.RecenzijaRepozitorij;
 public class KorisnikRecenzijaApplication {
 
 	
-	private static final Logger log = LoggerFactory.getLogger(KorisnikRecenzijaApplication.class);
+	//private static final Logger log = LoggerFactory.getLogger(KorisnikRecenzijaApplication.class);
 	public static void main(String[] args) {
-		SpringApplication.run(KorisnikRecenzijaApplication.class);
+		SpringApplication.run(KorisnikRecenzijaApplication.class, args);
 	}
-	
+	/*
+	 * 
+	 Projektni zadatak 1
+	 
 	@Bean
 	public CommandLineRunner demo(KorisnikRepozitorij repository) {
 		return (args) -> {
@@ -97,5 +100,5 @@ public class KorisnikRecenzijaApplication {
 			// }
 			log.info("");
 		};
-	}	
+	}	*/
 }
