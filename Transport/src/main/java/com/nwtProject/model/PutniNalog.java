@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -17,10 +19,19 @@ public class PutniNalog {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column (name = "idPutniNalog")
     private int idPutniNalog;
+    @NotNull
     @Column (name = "informacije")
+    
+    @NotNull
+    @Size(min=5, max=45)
     private String Informacije;
+    
+    @NotNull
     @Column (name = "idTransporta")
     private int idTransporta;
+    
+    @NotNull
+    @Size(min=5, max=500)
     @Column (name = "dokument")
     private byte[] dokument;
     
