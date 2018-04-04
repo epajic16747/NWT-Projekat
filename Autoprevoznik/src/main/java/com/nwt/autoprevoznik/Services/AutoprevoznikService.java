@@ -1,8 +1,10 @@
-package com.nwt.autoprevoznik;
+package com.nwt.autoprevoznik.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.nwt.autoprevoznik.AutoprevoznikRepository;
+
+import com.nwt.autoprevoznik.Models.Autoprevoznik;
+import com.nwt.autoprevoznik.Repositories.AutoprevoznikRepository;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class AutoprevoznikService {
 	public void obrisiPrevoznika(int id)
 	{
 		autoprevoznikRepository.deleteById(id);
+		
 	}
 	
 	public void updatePrevoznika(int id, Autoprevoznik a)

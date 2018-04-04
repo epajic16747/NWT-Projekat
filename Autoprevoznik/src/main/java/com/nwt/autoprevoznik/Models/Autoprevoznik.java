@@ -1,4 +1,4 @@
-package com.nwt.autoprevoznik;
+package com.nwt.autoprevoznik.Models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Autoprevoznik")
@@ -16,12 +18,17 @@ public class Autoprevoznik {
     @Column (name = "idTransporta")
     private int idAutoPrevoznika;
 	
+	@NotNull
+    @Size(min=5, max=45)
 	@Column(name="naziv")
 	private String naziv;
 	
+	@NotNull
+    @Size(min=5, max=100)
 	@Column(name="opis")
 	private String opis;
 	
+	@NotNull
 	@Column(name="adresa")
 	private String adresa;
 	
@@ -59,11 +66,14 @@ public class Autoprevoznik {
 		return email;
 	}
 	public void setEmail(String email) {
+		
 		this.email = email;
 	}
+	@NotNull
 	@Column(name="telefon")
 	private String telefon;
 	
+	@NotNull
 	@Column(name="email")
 	private String email;
 	
