@@ -24,10 +24,10 @@ public class KompanijaApplication {
 	private static final Logger log = LoggerFactory.getLogger(KompanijaApplication.class);
 	public static void main(String[] args) {
 		
-		SpringApplication.run(KompanijaApplication.class);
+		SpringApplication.run(KompanijaApplication.class,args);
 	}
 	
-	
+	/*
 	@Bean
 	public CommandLineRunner demo(KompanijaRepozitorij repository) {
 		return (args) -> {
@@ -103,5 +103,5 @@ public class KompanijaApplication {
 			// }
 			log.info("");
 		};
-	}	
+	}	*/
 }
