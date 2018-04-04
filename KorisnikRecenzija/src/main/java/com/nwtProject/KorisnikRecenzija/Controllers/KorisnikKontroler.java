@@ -34,5 +34,41 @@ public class KorisnikKontroler {
 		Korisnik korisnik = korisnikService.dajKorisnika(id);
 		return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
 	}
- 
+	
+	
+	@GetMapping("korisnici")
+	public ResponseEntity<List<Korisnik>>dajSveKorisnike() {
+		List<Korisnik> listaKorisnika = korisnikService.dajSveKorisnike();
+		return new ResponseEntity<List<Korisnik>>(listaKorisnika, HttpStatus.OK);
+	}
+	
+	@PostMapping("dodajKorisnika")
+	public ResponseEntity<Void> dodajKorisnika(@RequestBody Korisnik korisnik, UriComponentsBuilder builder) {
+		
+		//Za ovo treba servis vratit true/false
+		//Kod je ostavljen cisto  zbog primjera
+/*
+        boolean flag = articleService.addArticle(article);
+        if (flag == false) {
+        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }*/
+		korisnikService.dodajKorisnika(korisnik);
+		
+		//VIdi u testiranju sta ovaj dio radi
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(builder.path("/korisnik/{id}").buildAndExpand(korisnik.getIdKorisnika()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("azurirajKorisnika")
+	public ResponseEntity<Korisnik> azurirajKorisnika(@RequestBody Korisnik korisnik) {
+		korisnikService.azurirajKorisnika(korisnik);
+		return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("obrisi/{id}")
+	public ResponseEntity<Void> obrisiKorisnika(@PathVariable("id") Integer id) {
+		korisnikService.obrisiKorisnika(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}	
 }
