@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -16,12 +18,21 @@ public class Ponuda {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column (name = "idPonuda")
     private int idPonuda;
+    
+    @NotNull
+    @Size(min=1, max=10)
     @Column (name = "cijena")
     private double cijena;
+    
+    @NotNull
+    @Size(min=5, max=45)
     @Column (name = "tipVozila")
     private String tipVozila;
+    
+    @NotNull
     @Column (name = "idTransporta")
     private int idTransporta;
+    @NotNull
     @Column (name = "idAutoprevoznika")
     private int idAutoprevoznika;
 	
