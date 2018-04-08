@@ -34,7 +34,7 @@ public class Korisnik {
     
     @NotNull
     @Size(min=20, max=100)
-	@Column(name="email")
+	@Column(name="email",unique=true)
 	private String email;
 	
 	@Column(name="idKompanije")

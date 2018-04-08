@@ -29,6 +29,7 @@ public class KorisnikService implements IKorisnikService{
 	@Override
 	public Korisnik dajKorisnika(long idKorisnika) {
 		Korisnik korisnik = korisnikRepo.findById(idKorisnika).get();
+
 		return korisnik;
 	}
 	
