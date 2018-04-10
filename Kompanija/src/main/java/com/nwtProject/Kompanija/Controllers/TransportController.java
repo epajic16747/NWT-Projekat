@@ -30,9 +30,15 @@ public class TransportController {
 	
 	@GetMapping("dajTransport/{id}")
 	public ResponseEntity<Transport> dajTransport(@PathVariable("id") Integer id) {
-		
-		Transport transport= transportService.dajTransport(id);
-		return new ResponseEntity<Transport>(transport, HttpStatus.OK);
+		try {
+			Transport transport = transportService.dajTransport(id);
+			return new ResponseEntity<Transport>(transport, HttpStatus.OK);
+		}
+		catch(Exception ex){
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", ex.getMessage());
+			return new ResponseEntity<Transport>(header, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	
@@ -45,32 +51,44 @@ public class TransportController {
 	@PostMapping("dodajTransport")
 	public ResponseEntity<Void> dodajTransport(@RequestBody Transport transport, UriComponentsBuilder builder) {
 		
-		//Za ovo treba servis vratit true/false
-		//Kod je ostavljen cisto  zbog primjera
-/*
-        boolean flag = articleService.addArticle(article);
-        if (flag == false) {
-        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }*/
-		transportService.dodajTransport(transport);
-		
-		//VIdi u testiranju sta ovaj dio radi
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/ponuda/{id}").buildAndExpand(transport.getIdTransporta()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		try {
+			transportService.dodajTransport(transport);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(builder.path("/ponuda/{id}").buildAndExpand(transport.getIdTransporta()).toUri());
+			return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		}
+		catch (Exception ex){
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", ex.getMessage());
+			return new ResponseEntity<Void>(header, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PutMapping("azurirajTransport")
 	public ResponseEntity<Transport> azurirajTransport(@RequestBody Transport transport) {
-		transportService.azurirajTransport(transport);
-		return new ResponseEntity<Transport>(transport, HttpStatus.OK);
+		if(transportService.postojiTransport(transport)){
+
+			transportService.azurirajTransport(transport);
+			return new ResponseEntity<Transport>(transport, HttpStatus.OK);
+		}
+		else
+		{
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", "Ne postoji transport sa odabranim id-em!");
+			return new ResponseEntity<Transport>(header, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@DeleteMapping("obrisi/{id}")
 	public ResponseEntity<Void> obrisiTransport(@PathVariable("id") Integer id) {
-		transportService.obrisiTransport(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}	
-
-
+		try{
+			transportService.obrisiTransport(id);
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		catch(Exception ex){
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", ex.getMessage());
+			return new ResponseEntity<Void>(header, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

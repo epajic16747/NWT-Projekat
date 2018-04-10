@@ -31,6 +31,11 @@ public class KompanijaService implements IKompanijaService {
 		Kompanija kompanija = kompanijaRepo.findById(idKompanije).get();
 		return kompanija;
 	}
+
+	@Override
+	public Boolean postojiKompanija(long idKompanije){
+		return kompanijaRepo.existsById(idKompanije);
+	}
 	
 	@Override
 	public void dodajKompaniju(Kompanija kompanija) {
@@ -40,8 +45,12 @@ public class KompanijaService implements IKompanijaService {
 	}
 	@Override
 	public void azurirajKompaniju(Kompanija kompanija) {
-	    kompanijaRepo.save(kompanija);
+		if(postojiKompanija(kompanija.getIdKompanije()))
+	    	kompanijaRepo.save(kompanija);
+		else
+			throw new IllegalArgumentException("Nepostojeci id!");
 	}
+
 	@Override
 	public void obrisiKompaniju(int idKompanije) {
 	    kompanijaRepo.delete(dajKompaniju(idKompanije));

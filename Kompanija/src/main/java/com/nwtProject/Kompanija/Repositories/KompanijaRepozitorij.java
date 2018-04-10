@@ -10,4 +10,5 @@ import com.nwtProject.Kompanija.Models.Kompanija;
 public interface KompanijaRepozitorij extends CrudRepository<Kompanija, Long> {
 
     List<Kompanija> findByNaziv(String naziv);
+
 }
