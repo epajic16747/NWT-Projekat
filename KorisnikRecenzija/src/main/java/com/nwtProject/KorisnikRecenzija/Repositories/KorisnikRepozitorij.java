@@ -8,4 +8,5 @@ import com.nwtProject.KorisnikRecenzija.Models.Korisnik;
 public interface KorisnikRepozitorij extends CrudRepository<Korisnik, Long> {
 
     List<Korisnik> findByUsername(String username);
+    Boolean existsByUsername(String username);
 }

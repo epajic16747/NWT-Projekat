@@ -16,7 +16,7 @@ import javax.persistence.Column;
 public class Korisnik {
 	
 	@Id
-	@Column(name="IdKorisnika")
+	@Column(name="idKorisnika")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idKorisnika;
 	
@@ -33,7 +33,7 @@ public class Korisnik {
 	
     
     @NotNull
-    @Size(min=20, max=100)
+    @Size(min=10, max=100)
 	@Column(name="email",unique=true)
 	private String email;
 	

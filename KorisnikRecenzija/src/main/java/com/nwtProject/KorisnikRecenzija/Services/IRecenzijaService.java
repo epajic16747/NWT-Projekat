@@ -14,5 +14,6 @@ public interface IRecenzijaService {
 	void dodajRecenziju(Recenzija recenzija);
 	void azurirajRecenziju(Recenzija recenzija);
 	void obrisiRecenziju(int idRecenzije);
+	Boolean postojiPoIdu(long idRecenzija);
 
 }
