@@ -17,7 +17,7 @@ public class Ponuda {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column (name = "idPonuda")
-    private int idPonuda;
+    private Long idPonuda;
     
     @NotNull
     @Size(min=1, max=10)
@@ -39,7 +39,7 @@ public class Ponuda {
     protected Ponuda() {}
 
     
-    public Ponuda(int idPonuda, double cijena, String tipVozila, int idTransporta, int idAutoprevoznika) {
+    public Ponuda(Long idPonuda, double cijena, String tipVozila, int idTransporta, int idAutoprevoznika) {
 		super();
 		this.idPonuda = idPonuda;
 		this.cijena = cijena;
@@ -48,11 +48,11 @@ public class Ponuda {
 		this.idAutoprevoznika = idAutoprevoznika;
 	}
 
-	public int getIdPonuda() {
+	public Long getIdPonuda() {
 		return idPonuda;
 	}
 
-	public void setIdPonuda(int idPonuda) {
+	public void setIdPonuda(Long idPonuda) {
 		this.idPonuda = idPonuda;
 	}
 

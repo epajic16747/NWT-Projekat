@@ -44,7 +44,7 @@ public class PonudaService implements IPonudaService {
 	    ponudaRepo.save(ponuda);
 	}
 	@Override
-	public void obrisiPonudu(int idPonude) {
+	public void obrisiPonudu(long idPonude) {
 	    ponudaRepo.delete(dajPonudu(idPonude));
 	
 	}
