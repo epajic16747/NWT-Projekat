@@ -13,6 +13,6 @@ public interface IPonudaService {
 	Ponuda dajPonudu(long idPonude);
 	void dodajPonudu(Ponuda ponuda);
 	void azurirajPonudu(Ponuda ponuda);
-	void obrisiPonudu(int idPonude);
+	void obrisiPonudu(long idPonude);
 
 }
