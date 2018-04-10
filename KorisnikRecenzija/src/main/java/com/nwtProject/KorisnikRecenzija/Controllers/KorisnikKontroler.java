@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+
+import com.nwtProject.KorisnikRecenzija.Exceptions.KorisnikNotFoundException;
 import com.nwtProject.KorisnikRecenzija.Models.Korisnik;
 import com.nwtProject.KorisnikRecenzija.Services.IKorisnikService;
 
@@ -32,6 +36,14 @@ public class KorisnikKontroler {
 	public ResponseEntity<Korisnik> dajKorisnika(@PathVariable("id") Integer id) {
 		
 		Korisnik korisnik = korisnikService.dajKorisnika(id);
+		if (korisnik == null)
+		      throw new KorisnikNotFoundException("id-" + id);
+/*
+		    Resource<Student> resource = new Resource<Student>(student.get());
+
+		    ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+
+		    resource.add(linkTo.withRel("all-students"));*/
 		return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
 	}
 	
