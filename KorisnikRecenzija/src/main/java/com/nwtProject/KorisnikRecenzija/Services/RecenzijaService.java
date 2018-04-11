@@ -17,9 +17,14 @@ public class RecenzijaService implements IRecenzijaService{
 	
 	@Autowired
 	private RecenzijaRepozitorij recenzijaRepo;
-	
-	
+
 	@Override
+    public Boolean postojiPoIdu(long idRecenzija){
+	    return recenzijaRepo.existsById(idRecenzija);
+    }
+
+
+    @Override
 	public List<Recenzija> dajSveRecenzije(){
 		List<Recenzija> listaRecenzija = new ArrayList<>();
 		recenzijaRepo.findAll().forEach(e -> listaRecenzija.add(e));

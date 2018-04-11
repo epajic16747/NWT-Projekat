@@ -29,6 +29,7 @@ public class KorisnikService implements IKorisnikService{
 	@Override
 	public Korisnik dajKorisnika(long idKorisnika) {
 		Korisnik korisnik = korisnikRepo.findById(idKorisnika).get();
+
 		return korisnik;
 	}
 	
@@ -42,9 +43,20 @@ public class KorisnikService implements IKorisnikService{
 	public void azurirajKorisnika(Korisnik korisnik) {
 	    korisnikRepo.save(korisnik);
 	}
+
 	@Override
 	public void obrisiKorisnika(int idKorisnika) {
 	    korisnikRepo.delete(dajKorisnika(idKorisnika));
 		
 	}
+
+    @Override
+    public boolean postojiKorisnikPoIdu(long idKorisnika) {
+	    return korisnikRepo.existsById(idKorisnika);
+    }
+    public boolean postojiKorisnikPoUsername(String username){
+        return korisnikRepo.existsByUsername(username);
+    }
+
+
 }

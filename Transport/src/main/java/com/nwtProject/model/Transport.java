@@ -15,7 +15,7 @@ public class Transport {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column (name = "idTransporta")
-    private long idTransporta;
+    private int idTransporta;
 
     @Column(name = "cijenaMax")
     private Double cijenaMax;
@@ -56,11 +56,11 @@ public class Transport {
                 idTransporta, cijenaMax, datum, idAutoprevoznika, status, idKompanije, naziv);
     }
 
-	public long getIdTransporta() {
+	public int getIdTransporta() {
 		return idTransporta;
 	}
 
-	public void setIdTransporta(long idTransporta) {
+	public void setIdTransporta(int idTransporta) {
 		this.idTransporta = idTransporta;
 	}
 

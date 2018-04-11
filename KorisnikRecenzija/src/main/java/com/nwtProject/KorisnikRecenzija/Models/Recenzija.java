@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Column;
@@ -21,12 +23,13 @@ public class Recenzija {
 	private Long idRecenzije;
 	
     @NotNull
-    @Size(min=100, max=1500)
+    @Size(min=10, max=1500)
 	@Column(name="komentar")
 	private String komentar;
 	
     @NotNull
-    @Size(min=1, max=10)
+    @Min(1)
+    @Max(5)
 	@Column(name="ocjena")
 	private int ocjena;
 	

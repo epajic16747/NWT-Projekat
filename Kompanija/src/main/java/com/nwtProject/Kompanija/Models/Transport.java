@@ -22,11 +22,6 @@ public class Transport {
     private Long idTransporta;
     
     @NotNull
-    @Size(min=1, max=9999)
-    @Column(name = "cijenaMax")
-    private Double cijenaMax;
-    
-    @NotNull
     @Column(name = "datum")
     private String datum;
     @NotNull
@@ -37,12 +32,12 @@ public class Transport {
     @Size(min=3, max=45)
     @Column(name = "status")
     private String status;
-    
-    @NotNull
-	@ManyToOne(targetEntity=Kompanija.class)
-    @JoinColumn(name="idKompanije")
-    private int idKompanije;
-    
+
+	@NotNull
+	@ManyToOne
+//    @JoinColumn(name="idKompanije")
+    private Kompanija idKompanije;
+
     @NotNull
     @Size(min=3, max=450)
     @Column(name = "naziv")
@@ -50,24 +45,24 @@ public class Transport {
 
     public Transport() {}
 
-    public Transport(Long idTransporta, Double cijenaMax, String datum,  int idAutoprevoznika, String status,
-    		int idKompanije, String naziv ) {
-        super();
-        this.idTransporta = idTransporta;
-        this.cijenaMax = cijenaMax;
-        this.datum = datum;
-        this.idAutoprevoznika = idAutoprevoznika;
-        this.status = status;
-        this.idKompanije = idKompanije;
-        this.naziv = naziv; 
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Transport[idTransporta=%d, cijenaMax='%d', datum='%d' , idAutoprevoznika = '%d', status='%s', idKompanije = '%d', naziv = '%s']",
-                idTransporta, cijenaMax, datum, idAutoprevoznika, status, idKompanije, naziv);
-    }
+//    public Transport(Long idTransporta, Double cijenaMax, String datum,  int idAutoprevoznika, String status,
+//    		int idKompanije, String naziv ) {
+//        super();
+//        this.idTransporta = idTransporta;
+//        this.cijenaMax = cijenaMax;
+//        this.datum = datum;
+//        this.idAutoprevoznika = idAutoprevoznika;
+//        this.status = status;
+//        this.idKompanije = idKompanije;
+//        this.naziv = naziv;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format(
+//                "Transport[idTransporta=%d, cijenaMax='%d', datum='%d' , idAutoprevoznika = '%d', status='%s', idKompanije = '%d', naziv = '%s']",
+//                idTransporta, cijenaMax, datum, idAutoprevoznika, status, idKompanije, naziv);
+//    }
 
 	public Long getIdTransporta() {
 		return idTransporta;
@@ -75,14 +70,6 @@ public class Transport {
 
 	public void setIdTransporta(Long idTransporta) {
 		this.idTransporta = idTransporta;
-	}
-
-	public Double getCijenaMax() {
-		return cijenaMax;
-	}
-
-	public void setCijenaMax(Double cijenaMax) {
-		this.cijenaMax = cijenaMax;
 	}
 
 	public String getDatum() {
@@ -93,28 +80,12 @@ public class Transport {
 		this.datum = datum;
 	}
 
-	public int getIdAutoprevoznika() {
-		return idAutoprevoznika;
-	}
-
-	public void setIdAutoprevoznika(int idAutoprevoznika) {
-		this.idAutoprevoznika = idAutoprevoznika;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
-		this.status = status;	
-	}
-
-	public int getIdKompanije() {
-		return idKompanije;
-	}
-
-	public void setIdKompanije(int idKompanije) {
-		this.idKompanije = idKompanije;
+		this.status = status;
 	}
 
 	public String getNaziv() {
@@ -123,5 +94,13 @@ public class Transport {
 
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
+	}
+
+	public Kompanija getIdKompanije() {
+		return idKompanije;
+	}
+
+	public void setIdKompanije(Kompanija idKompanije) {
+		this.idKompanije = idKompanije;
 	}
 }

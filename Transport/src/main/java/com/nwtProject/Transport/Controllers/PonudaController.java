@@ -30,7 +30,7 @@ public class PonudaController {
 	private IPonudaService ponudaService;
 	
 	@GetMapping("dajPonudu/{id}")
-	public ResponseEntity<Ponuda> dajPonudu(@PathVariable("id") Integer id) {
+	public ResponseEntity<Ponuda> dajPonudu(@PathVariable("id") long id) {
 		
 		Ponuda ponuda = ponudaService.dajPonudu(id);
 		return new ResponseEntity<Ponuda>(ponuda, HttpStatus.OK);
@@ -68,7 +68,7 @@ public class PonudaController {
 	}
 	
 	@DeleteMapping("obrisi/{id}")
-	public ResponseEntity<Void> obrisiPonudu(@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> obrisiPonudu(@PathVariable("id") long id) {
 		ponudaService.obrisiPonudu(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}	

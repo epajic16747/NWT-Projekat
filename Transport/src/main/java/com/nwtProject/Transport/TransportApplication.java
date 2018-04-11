@@ -1,23 +1,32 @@
 package com.nwtProject.Transport;
 
 
-import org.hibernate.Session;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+//import org.hibernate.Session;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+//import org.springframework.boot.autoconfigure.domain.EntityScan;
+//import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+/*
 import com.nwtProject.model.Ponuda;
 import com.nwtProject.model.Transport;
 import com.nwtProject.model.PutniNalog;
 import com.nwtProject.repository.PonudaRepository;
 import com.nwtProject.repository.TransportRepository;
 import com.nwtProject.repository.PutniNalogRepository;
-
+*/
 @SpringBootApplication
 @ComponentScan({"com.nwtProject"})
 @EntityScan("com.nwtProject")
@@ -85,4 +94,18 @@ public class TransportApplication {
 				//putninalogrepository.save(new PutniNalog(1, "Živinice -> Sarajevo",3, "dfd"));
 			};
 		}*/
+}
+//Eureka service client 
+
+@RestController
+class ServiceInstanceRestController {
+
+  @Autowired
+  private DiscoveryClient discoveryClient;
+
+  @RequestMapping("/service-instances/{applicationName}")
+  public List<ServiceInstance> serviceInstancesByApplicationName(
+          @PathVariable String applicationName) {
+      return this.discoveryClient.getInstances(applicationName);
+  }
 }

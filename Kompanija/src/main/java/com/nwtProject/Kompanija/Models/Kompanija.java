@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
+
 import javax.persistence.Column;
 
 @Entity
@@ -25,7 +27,7 @@ public class Kompanija {
 	@Column(name="naziv")
     private String naziv;
 	
-    @Size(min=100, max=1000)
+    @Size(min=10, max=1000)
 	@Column(name="opis")
     private String opis;
 	
@@ -39,7 +41,11 @@ public class Kompanija {
 	@Column(name="telefon")
     private String telefon;
 	
-    @Size(min=20, max=100)
+    @Size(min=5, max=100)
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+			+"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+			+"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+			message="{invalid.email}")
 	@Column(name="email")
     private String email;
 	
@@ -89,6 +95,7 @@ public class Kompanija {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
     @Override
     public String toString() {
         return String.format(

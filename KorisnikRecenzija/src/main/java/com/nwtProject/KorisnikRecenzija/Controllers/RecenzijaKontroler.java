@@ -1,8 +1,10 @@
 package com.nwtProject.KorisnikRecenzija.Controllers;
 
 
-import java.util.List;
+import java.lang.reflect.Executable;
+import java.util.*;
 
+import org.hibernate.criterion.IlikeExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,9 +34,18 @@ public class RecenzijaKontroler {
 	
 	@GetMapping("dajRecenziju/{id}")
 	public ResponseEntity<Recenzija> dajRecenziju(@PathVariable("id") Integer id) {
-		
-		Recenzija recenzija = recenzijaService.dajRecenziju(id);
-		return new ResponseEntity<Recenzija>(recenzija, HttpStatus.OK);
+		try {
+            Recenzija recenzija = recenzijaService.dajRecenziju(id);
+            return new ResponseEntity<Recenzija>(recenzija, HttpStatus.OK);
+        }
+        catch (NoSuchElementException ex){
+            System.out.println(ex.getMessage());
+            throw new IllegalArgumentException("Ne postoji trazene recenzija!");
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            throw new IllegalArgumentException("Nije moguce ispuniti trazeni zahtjev!");
+        }
 	}
 	
 	
@@ -47,32 +58,48 @@ public class RecenzijaKontroler {
 	
 	@PostMapping("dodajRecenziju")
 	public ResponseEntity<Void> dodajRecenziju(@RequestBody Recenzija recenzija, UriComponentsBuilder builder) {
-		
-		//Za ovo treba servis vratit true/false
-		//Kod je ostavljen cisto  zbog primjera
-/*
-        boolean flag = articleService.addArticle(article);
-        if (flag == false) {
-        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }*/
-		recenzijaService.dodajRecenziju(recenzija);
-		
-		//VIdi u testiranju sta ovaj dio radi
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/recenzija/{id}").buildAndExpand(recenzija.getIdRecenzije()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        try {
+            recenzijaService.dodajRecenziju(recenzija);
+
+            //VIdi u testiranju sta ovaj dio radi
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(builder.path("/recenzija/{id}").buildAndExpand(recenzija.getIdRecenzije()).toUri());
+            return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            throw new IllegalArgumentException("Desila se greska pri dodavanju recenzije");
+        }
 	}
 	
 	@PutMapping("azurirajRecenziju")
 	public ResponseEntity<Recenzija> azurirajRecenziju(@RequestBody Recenzija recenzija) {
-		recenzijaService.azurirajRecenziju(recenzija);
-		return new ResponseEntity<Recenzija>(recenzija, HttpStatus.OK);
+	    if(!recenzijaService.postojiPoIdu(recenzija.getIdRecenzije()))
+            throw new IllegalArgumentException("Odabrana recenzija ne postoji!");
+
+	    try {
+            recenzijaService.azurirajRecenziju(recenzija);
+            return new ResponseEntity<Recenzija>(recenzija, HttpStatus.OK);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            throw new IllegalArgumentException("Desila se greska: " + ex.getMessage());
+        }
 	}
 	
 	@DeleteMapping("obrisi/{id}")
 	public ResponseEntity<Void> obrisiRecenziju(@PathVariable("id") Integer id) {
-		recenzijaService.obrisiRecenziju(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	    try {
+            recenzijaService.obrisiRecenziju(id);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        catch(NoSuchElementException ex){
+	        throw new IllegalArgumentException("Ne postoji odabrana recenzija!");
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            throw new IllegalArgumentException("Desila se greska: " +  ex.getMessage());
+        }
 	}
 
 }

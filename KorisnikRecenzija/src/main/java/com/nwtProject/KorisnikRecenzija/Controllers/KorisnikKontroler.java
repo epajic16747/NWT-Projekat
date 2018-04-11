@@ -3,7 +3,10 @@ package com.nwtProject.KorisnikRecenzija.Controllers;
 
 
 import java.util.List;
+import java.util.*;
 
+import com.nwtProject.KorisnikRecenzija.Services.KorisnikService;
+import org.hibernate.criterion.IlikeExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,8 +21,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+
+import com.nwtProject.KorisnikRecenzija.Exceptions.KorisnikNotFoundException;
 import com.nwtProject.KorisnikRecenzija.Models.Korisnik;
 import com.nwtProject.KorisnikRecenzija.Services.IKorisnikService;
+
+import javax.validation.ConstraintViolationException;
 
 @Controller
 @RequestMapping("korisnik")
@@ -30,9 +39,15 @@ public class KorisnikKontroler {
 	
 	@GetMapping("dajKorisnika/{id}")
 	public ResponseEntity<Korisnik> dajKorisnika(@PathVariable("id") Integer id) {
-		
-		Korisnik korisnik = korisnikService.dajKorisnika(id);
-		return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+		try{
+            Korisnik korisnik = korisnikService.dajKorisnika(id);
+            return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+
+        }
+        catch (Exception ex)
+        {
+            throw new IllegalArgumentException("Ne postji korisnik sa trazenim id-em");
+        }
 	}
 	
 	
@@ -45,30 +60,54 @@ public class KorisnikKontroler {
 	@PostMapping("dodajKorisnika")
 	public ResponseEntity<Void> dodajKorisnika(@RequestBody Korisnik korisnik, UriComponentsBuilder builder) {
 		
-		//Za ovo treba servis vratit true/false
-		//Kod je ostavljen cisto  zbog primjera
-/*
-        boolean flag = articleService.addArticle(article);
-        if (flag == false) {
-        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }*/
-		korisnikService.dodajKorisnika(korisnik);
-		
-		//VIdi u testiranju sta ovaj dio radi
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/korisnik/{id}").buildAndExpand(korisnik.getIdKorisnika()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		if(!korisnikService.postojiKorisnikPoUsername(korisnik.getUsername())) {
+           try {
+               korisnikService.dodajKorisnika(korisnik);
+               HttpHeaders headers = new HttpHeaders();
+               headers.setLocation(builder.path("/korisnik/{id}").buildAndExpand(korisnik.getIdKorisnika()).toUri());
+               return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+           }
+           catch (ConstraintViolationException ex){
+               System.out.println(ex.getMessage());
+               throw new IllegalArgumentException("Podaci ne ispunjavaju validaciju!");
+           }
+            catch (Exception ex) {
+               System.out.println(ex.getMessage());
+               throw new IllegalArgumentException("Desila  se greska pri spasavaanju novog korisnika u bazu!");
+           }
+        }
+        else
+            throw new IllegalArgumentException("Korisnicko ime nije jednistveno!");
 	}
 	
 	@PutMapping("azurirajKorisnika")
 	public ResponseEntity<Korisnik> azurirajKorisnika(@RequestBody Korisnik korisnik) {
-		korisnikService.azurirajKorisnika(korisnik);
-		return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+        if(!korisnikService.postojiKorisnikPoIdu(korisnik.getIdKorisnika()))
+            throw new IllegalArgumentException("Odabrani korisnik ne postoji!");
+	    try {
+            korisnikService.azurirajKorisnika(korisnik);
+            return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+        }
+        catch (Exception ex){
+	        throw new IllegalArgumentException(ex.getMessage());
+        }
 	}
 	
 	@DeleteMapping("obrisi/{id}")
 	public ResponseEntity<Void> obrisiKorisnika(@PathVariable("id") Integer id) {
-		korisnikService.obrisiKorisnika(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	    try {
+            korisnikService.obrisiKorisnika(id);
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        catch(NoSuchElementException ex)
+        {
+            throw new IllegalArgumentException("Ne postoji odabrani korisnik!");
+
+        }
+        catch(Exception ex){
+//	        System.out.println("Nesto jakoo");
+//	        System.out.println(ex.getClass().getCanonicalName());
+	        throw new IllegalArgumentException("Desila se greska pri brisanju korisnika!");
+        }
 	}	
 }

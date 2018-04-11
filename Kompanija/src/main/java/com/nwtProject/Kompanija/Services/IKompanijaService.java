@@ -13,4 +13,5 @@ public interface IKompanijaService {
 	void dodajKompaniju(Kompanija kompanija);
 	void azurirajKompaniju(Kompanija kompanija);
 	void obrisiKompaniju(int idKompanije);
+	public Boolean postojiKompanija(long idKompanije);
 }

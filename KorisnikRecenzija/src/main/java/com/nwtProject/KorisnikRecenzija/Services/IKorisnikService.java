@@ -13,5 +13,7 @@ public interface IKorisnikService {
 	void dodajKorisnika(Korisnik korisnik);
 	void azurirajKorisnika(Korisnik korisnik);
 	void obrisiKorisnika(int idKorisnika);
+	boolean postojiKorisnikPoIdu(long idKorisnika);
+	boolean postojiKorisnikPoUsername(String username);
 	
 }

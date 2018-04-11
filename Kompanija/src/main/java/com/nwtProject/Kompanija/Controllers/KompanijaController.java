@@ -30,9 +30,15 @@ public class KompanijaController {
 	
 	@GetMapping("dajKompaniju/{id}")
 	public ResponseEntity<Kompanija> dajKompaniju(@PathVariable("id") Integer id) {
-		
-		Kompanija kompanija = kompanijaService.dajKompaniju(id);
-		return new ResponseEntity<Kompanija>(kompanija, HttpStatus.OK);
+		try{
+			Kompanija kompanija = kompanijaService.dajKompaniju(id);
+			return new ResponseEntity<Kompanija>(kompanija, HttpStatus.OK);
+		}
+		catch (Exception ex){
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", ex.getMessage());
+			return new ResponseEntity<Kompanija>(header, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	
@@ -51,26 +57,51 @@ public class KompanijaController {
         boolean flag = articleService.addArticle(article);
         if (flag == false) {
         	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+
         }*/
-		kompanijaService.dodajKompaniju(kompanija);
-		
-		//VIdi u testiranju sta ovaj dio radi
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/kompanija/{id}").buildAndExpand(kompanija.getIdKompanije()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		try {
+			kompanijaService.dodajKompaniju(kompanija);
+
+			//VIdi u testiranju sta ovaj dio radi
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(builder.path("/kompanija/{id}").buildAndExpand(kompanija.getIdKompanije()).toUri());
+			return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		}
+		catch (Exception e){
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("error", e.getMessage());
+			return new ResponseEntity<Void>(headers, HttpStatus.BAD_REQUEST);
+		}
+
 	}
-	
+
+
 	@PutMapping("azurirajKompaniju")
 	public ResponseEntity<Kompanija> azurirajKompaniju(@RequestBody Kompanija kompanija) {
-		kompanijaService.azurirajKompaniju(kompanija);
-		return new ResponseEntity<Kompanija>(kompanija, HttpStatus.OK);
+		try{
+			kompanijaService.azurirajKompaniju(kompanija);
+			return new ResponseEntity<Kompanija>(kompanija, HttpStatus.OK);
+		}
+		catch(Exception ex){
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", ex.getMessage());
+			return  new ResponseEntity<Kompanija>(header, HttpStatus.BAD_REQUEST);
+
+		}
 	}
-	
+
 	@DeleteMapping("obrisi/{id}")
 	public ResponseEntity<Void> obrisiKompaniju(@PathVariable("id") Integer id) {
-		kompanijaService.obrisiKompaniju(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}	
+		try {
+			kompanijaService.obrisiKompaniju(id);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+		catch(Exception ex){
+			HttpHeaders header = new HttpHeaders();
+			header.add("error", ex.getMessage());
+			return new ResponseEntity<Void>(header, HttpStatus.BAD_REQUEST);
+		}
+	}
 
 
 }

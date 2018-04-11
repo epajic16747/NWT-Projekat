@@ -40,13 +40,23 @@ public class TransportService implements ITransportService {
 		transportRepo.save(transport);
 
 	}
+
+
+	@Override
+	public Boolean postojiTransport(Transport t){
+		return transportRepo.existsById(t.getIdTransporta());
+	}
+
 	@Override
 	public void azurirajTransport(Transport transport) {
+
 		transportRepo.save(transport);
 	}
+
 	@Override
 	public void obrisiTransport(int idTransporta) {
 		transportRepo.delete(dajTransport(idTransporta));
 	
 	}
+
 }
