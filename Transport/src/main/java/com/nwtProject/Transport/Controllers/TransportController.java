@@ -1,5 +1,5 @@
 package com.nwtProject.Transport.Controllers;
-
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 import java.util.List;
 
@@ -15,14 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.nwtProject.Transport.Services.ITransportService;
 import com.nwtProject.model.Transport;
+import com.nwtProject.repository.TransportRepository;
 
 
 
-@Controller
+@RestController
 @RequestMapping("transport")
 public class TransportController {
 	
@@ -36,15 +38,16 @@ public class TransportController {
 		return new ResponseEntity<Transport>(transport, HttpStatus.OK);
 	}
 	
-	
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 	@GetMapping("transporti")
 	public ResponseEntity<List<Transport>>dajSveTransporte() {
 		List<Transport> listaTransporta = transportService.dajSveTransporte();
 		return new ResponseEntity<List<Transport>>(listaTransporta, HttpStatus.OK);
 	}
 	
-	@PostMapping("dodajTransport")
-	public ResponseEntity<Void> dodajTransport(@RequestBody Transport transport, UriComponentsBuilder builder) {
+	@PostMapping("/transporti")
+	public ResponseEntity dodajTransport(@RequestBody Transport transport) {
 		
 		//Za ovo treba servis vratit true/false
 		//Kod je ostavljen cisto  zbog primjera
@@ -54,23 +57,29 @@ public class TransportController {
         	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }*/
 		transportService.dodajTransport(transport);
-		
+	    rabbitTemplate.convertAndSend("transporti-exchange","transporti.created.#",transport.getIdTransporta() +";" +transport.getCijenaMax()+";"+ transport.getDatum()+ ";"+transport.getIdAutoprevoznika()+";"+ transport.getIdKompanije()+";"+ transport.getNaziv()+";" +";create");
+		return new ResponseEntity(transport, HttpStatus.OK);
 		//VIdi u testiranju sta ovaj dio radi
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/ponuda/{id}").buildAndExpand(transport.getIdTransporta()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        //HttpHeaders headers = new HttpHeaders();
+        //headers.setLocation(builder.path("/transporti/{id}").buildAndExpand(transport.getIdTransporta()).toUri());
+        //return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("azurirajTransport")
 	public ResponseEntity<Transport> azurirajTransport(@RequestBody Transport transport) {
 		transportService.azurirajTransport(transport);
+		rabbitTemplate.convertAndSend("transporti-exchange","transporti.created.#",transport.getIdTransporta() +";" +transport.getCijenaMax()+";"+ transport.getDatum()+ ";"+transport.getIdAutoprevoznika()+";"+ transport.getIdKompanije()+";"+ transport.getNaziv()+";" +";update");
+
 		return new ResponseEntity<Transport>(transport, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("obrisi/{id}")
 	public ResponseEntity<Void> obrisiTransport(@PathVariable("id") Integer id) {
 		transportService.obrisiTransport(id);
+	    rabbitTemplate.convertAndSend("transporti-exchange", "transporti.deleted.#", id+";delete");
+
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		
 	}	
 
 
