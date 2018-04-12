@@ -43,7 +43,7 @@ public class PonudaController {
 		return new ResponseEntity<List<Ponuda>>(listaPonuda, HttpStatus.OK);
 	}
 	
-	@PostMapping("dodajKorisnika")
+	@PostMapping("dodajPonudu")
 	public ResponseEntity<Void> dodajPonudu(@RequestBody Ponuda ponuda, UriComponentsBuilder builder) {
 		
 		//Za ovo treba servis vratit true/false

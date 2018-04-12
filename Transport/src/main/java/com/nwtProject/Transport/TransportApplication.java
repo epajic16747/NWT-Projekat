@@ -35,10 +35,11 @@ public class TransportApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TransportApplication.class, args);
+        
 	}
 	
 	
-	/*
+/*
 	 @Autowired
 	    private TransportRepository transportRepository;
 	 @Autowired
@@ -90,7 +91,7 @@ public class TransportApplication {
 		public CommandLineRunner putninalogBean(PutniNalogRepository putninalogrepository) {
 			return (args) -> {
 				
-				putninalogrepository.save(new PutniNalog(1, "Živinice -> Sarajevo",3, "dfd"));
+				//putninalogrepository.save(new PutniNalog(1, "Živinice -> Sarajevo",3, "dfd"));
 			};
 		}*/
 }
