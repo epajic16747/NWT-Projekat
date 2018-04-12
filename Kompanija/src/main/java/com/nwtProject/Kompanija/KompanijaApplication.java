@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.nwtProject.Kompanija.Models.Kompanija;
 import com.nwtProject.Kompanija.Models.Transport;
@@ -33,7 +35,13 @@ public class KompanijaApplication {
 		
 		SpringApplication.run(KompanijaApplication.class,args);
 	}
-	
+    @Bean
+
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+
+        return builder.build();
+
+    }
 	/*
 	@Bean
 	public CommandLineRunner demo(KompanijaRepozitorij repository) {

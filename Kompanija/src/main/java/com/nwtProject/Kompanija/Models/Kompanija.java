@@ -8,10 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.Pattern;
 
 import javax.persistence.Column;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name="Kompanija")
 public class Kompanija {
