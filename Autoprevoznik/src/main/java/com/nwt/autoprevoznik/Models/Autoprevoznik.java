@@ -15,8 +15,8 @@ public class Autoprevoznik {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column (name = "idTransporta")
-    private int idAutoPrevoznika;
+    @Column (name = "idAutoprevoznika")
+    private Long idAutoPrevoznika;
 	
 	@NotNull
     @Size(min=5, max=45)
@@ -32,10 +32,19 @@ public class Autoprevoznik {
 	@Column(name="adresa")
 	private String adresa;
 	
-	public int getIdAutoPrevoznika() {
+	
+	@NotNull
+	@Column(name="telefon")
+	private String telefon;
+	
+	@NotNull
+	@Column(name="email")
+	private String email;
+	
+	public Long getIdAutoPrevoznika() {
 		return idAutoPrevoznika;
 	}
-	public void setIdAutoPrevoznika(int idAutoPrevoznika) {
+	public void setIdAutoPrevoznika(Long idAutoPrevoznika) {
 		this.idAutoPrevoznika = idAutoPrevoznika;
 	}
 	public String getNaziv() {
@@ -69,16 +78,10 @@ public class Autoprevoznik {
 		
 		this.email = email;
 	}
-	@NotNull
-	@Column(name="telefon")
-	private String telefon;
-	
-	@NotNull
-	@Column(name="email")
-	private String email;
+
 	
 	protected Autoprevoznik() {}
-	public Autoprevoznik(int idAutoprevoznika, String naziv, String opis, String adresa, String telefon,
+	public Autoprevoznik(Long idAutoprevoznika, String naziv, String opis, String adresa, String telefon,
 			String email)
 	{
 		this.idAutoPrevoznika=idAutoprevoznika;

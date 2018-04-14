@@ -36,7 +36,7 @@ public class KorisnikKompanija {
 	
 	
 	@Autowired
-	RestTemplate restTemplate;
+	RestTemplate restTemplateKompanija;
 	
     @RequestMapping(value = "kompanija/dajKompaniju/{id}", method = RequestMethod.GET)
     public Kompanija dajKompaniju(@PathVariable int id) throws Exception
@@ -44,13 +44,15 @@ public class KorisnikKompanija {
         System.out.println("Trazenje kompanije  " + Integer.toString(id));
         
        
-        Kompanija k = restTemplate.getForObject("http://kompanija-client/kompanija/dajKompaniju/{id}",Kompanija.class,id);
-        return k;		
+        Kompanija kompanija = restTemplateKompanija.getForObject("http://kompanija-client/kompanija/dajKompaniju/{id}",Kompanija.class,id);
+        return kompanija;		
     }
+    
+    
 
     @Bean
     @LoadBalanced
-    public RestTemplate restTemplate() {
+    public RestTemplate restTemplateKompanija() {
         return new RestTemplate();
     }
 }

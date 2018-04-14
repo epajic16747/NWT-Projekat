@@ -8,12 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import com.nwt.autoprevoznik.Models.Autoprevoznik;
 
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 @Repository
-public interface AutoprevoznikRepository extends CrudRepository<Autoprevoznik, Integer> {
+public interface AutoprevoznikRepository extends CrudRepository<Autoprevoznik, Long> {
 	
+	
+	//List<Autoprevoznik> findByNaziv(String naziv);
+    //Boolean existsByNaziv(String naziv);
+	/*
 	@Query("select a from Autoprevoznik a where a.naziv = :naziv")
-	Iterable<Autoprevoznik> dajPrevoznikaPoNazivu(@Param("naziv") String naziv);
+	Iterable<Autoprevoznik> dajPrevoznikaPoNazivu(@Param("naziv") String naziv);*/
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 //import org.springframework.boot.autoconfigure.domain.EntityScan;
 //import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,6 +28,7 @@ import com.nwtProject.repository.PonudaRepository;
 import com.nwtProject.repository.TransportRepository;
 import com.nwtProject.repository.PutniNalogRepository;
 */
+@EnableEurekaClient
 @SpringBootApplication
 @ComponentScan({"com.nwtProject"})
 @EntityScan("com.nwtProject")
@@ -96,7 +98,7 @@ public class TransportApplication {
 		}*/
 }
 //Eureka service client 
-
+/*
 @RestController
 class ServiceInstanceRestController {
 
@@ -108,4 +110,4 @@ class ServiceInstanceRestController {
           @PathVariable String applicationName) {
       return this.discoveryClient.getInstances(applicationName);
   }
-}
+}*/

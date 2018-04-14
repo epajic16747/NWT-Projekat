@@ -54,6 +54,7 @@ public class KorisnikService implements IKorisnikService{
     public boolean postojiKorisnikPoIdu(long idKorisnika) {
 	    return korisnikRepo.existsById(idKorisnika);
     }
+    
     public boolean postojiKorisnikPoUsername(String username){
         return korisnikRepo.existsByUsername(username);
     }
