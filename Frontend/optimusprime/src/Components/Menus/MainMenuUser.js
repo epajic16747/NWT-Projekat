@@ -34,7 +34,7 @@ const MenuItemGroup = Menu.ItemGroup;
             theme= "light"
           >
              <Menu.Item key="home">
-             <Link to="/" >Home</Link>
+             <Link to="/home" >Home</Link>
            </Menu.Item>
            <Menu.Item key="shop">
            <Link to="/proizvodi">Shop</Link>
@@ -64,7 +64,7 @@ const MenuItemGroup = Menu.ItemGroup;
             theme= "light"
             >
               <Menu.Item key="home">
-                <Link to="/" >Home</Link>
+                <Link to="/home" >Home</Link>
               </Menu.Item>
               <Menu.Item key="shop">
               <Link to="/proizvodi">Shop</Link>

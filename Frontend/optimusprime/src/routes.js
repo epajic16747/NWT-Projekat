@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, BrowserRouter} from 'react-router-dom'
 import {ModalForm} from './Components/Forms/ModalForm.js'
 import {Home} from './Views/Home.js';
+import {App} from './Components/App.js';
 
 
 
@@ -9,7 +10,8 @@ import {Home} from './Views/Home.js';
     
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={Home}/> 
+            <Route exact path="/" component={App}/> 
+            <Route path="/home" component={Home}/> 
             <Route path="/signIn" render={(props) =>( <ModalForm {...props} forma={""}/>)}/>         
             <Route path="/signUp" render={(props) =>( <ModalForm {...props} forma={"User registration"}/>)}/>     
 

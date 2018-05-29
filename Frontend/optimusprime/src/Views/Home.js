@@ -16,7 +16,7 @@ const { Meta } = Card;
     constructor(){
       super()
 
-          
+      localStorage.setItem("initialLoading", "true");     
           
     }
 
