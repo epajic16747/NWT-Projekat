@@ -1,0 +1,9 @@
+.ant-layout-has-sider .ant-layout-sider .ant-layout-sider-children {
+    max-width: 50px;
+    width: 30px;
+
+}
+.ant-layout-has-sider .ant-layout-sider {
+    max-width: 50px;
+    width: 30px !important;
+}

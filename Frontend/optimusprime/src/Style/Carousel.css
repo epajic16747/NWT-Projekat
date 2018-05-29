@@ -1,0 +1,6 @@
+.ant-carousel .slick-slide img {
+    max-height: 500px;
+    min-height: 400px;
+    height: auto;
+    width: 100%;
+  }
