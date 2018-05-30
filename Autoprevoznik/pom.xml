@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>Autoprevoznik</name>
-	<description>Mikroservis za modul kompanija</description>
+	<description>Mikroservis za modul autoprevoznik</description>
 
 	  <parent>
         <groupId>org.springframework.boot</groupId>
