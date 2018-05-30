@@ -7,3 +7,9 @@
     max-width: 50px;
     width: 30px !important;
 }
+
+.ant-layout-sider{
+    flex: 0 !important;
+    min-width: 90px !important;
+    background-color: #000000;
+}
