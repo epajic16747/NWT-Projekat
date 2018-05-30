@@ -89,6 +89,13 @@ public class TransportController {
 		return new ResponseEntity<List<Transport>>(aktivniTransporti, HttpStatus.OK);
 	}
 	
+	@GetMapping("dajTransportePoKompaniji/{idKompanije}")
+	public ResponseEntity<List<Transport>> dajTransportePoKompaniji(@PathVariable("idKompanije") int idKompanije)
+	{
+		List<Transport> transportiKompanije = transportService.dajTransportePoKompaniji(idKompanije);
+		return new ResponseEntity<List<Transport>>(transportiKompanije,HttpStatus.OK);
+		
+	}
 	
 
 

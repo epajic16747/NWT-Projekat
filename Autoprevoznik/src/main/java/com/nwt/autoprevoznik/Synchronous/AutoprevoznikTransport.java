@@ -25,7 +25,6 @@ public class AutoprevoznikTransport {
 	@RequestMapping(value = "transport/dajAktivneTransporte", method= RequestMethod.GET)
 	public List<Transport> dajAktivneTransporte() throws Exception{
 		
-		//System.out.println("Trazenje recenzije sa id-em: " + Integer.toString(id));
 		ResponseEntity<Transport[]> response = restTemplateTransportAutoprevoznik.getForEntity("http://transport-client/transport/dajAktivneTransporte",Transport[].class);
 		
 		return Arrays.asList(response.getBody());

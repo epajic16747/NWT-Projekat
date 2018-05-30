@@ -52,13 +52,17 @@ public class TransportService implements ITransportService {
 	
 	@Override
 	public List<Transport> dajAktivneTransporte()
-
 	{
 		List<Transport> aktivniTransporti =(List<Transport>) transportRepo.dajAktivne("aktivan");
 		return aktivniTransporti;
 		
 	}
 	
-	
+	@Override
+	public List<Transport> dajTransportePoKompaniji(int idKompanije)
+	{
+	 List<Transport> transportiKompanije = (List<Transport>) transportRepo.dajTransportePoKompaniji(idKompanije);
+	 return transportiKompanije;
+	}
 	
 }

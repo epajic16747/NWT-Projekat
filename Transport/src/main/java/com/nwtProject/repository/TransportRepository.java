@@ -14,5 +14,8 @@ public interface TransportRepository extends CrudRepository<Transport, Long> {
 
 	@Query("select t from Transport t where t.status = :status")
 	Iterable<Transport> dajAktivne(@Param("status") String status);
+	
+	@Query("select t from Transport t where t.idKompanije = :idKompanije")
+	Iterable<Transport> dajTransportePoKompaniji(@Param("idKompanije") int idKompanije);
 }
 
