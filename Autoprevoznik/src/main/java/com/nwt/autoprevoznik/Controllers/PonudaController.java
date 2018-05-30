@@ -33,7 +33,7 @@ public class PonudaController {
 	
 	@GetMapping("ponude")
 	public ResponseEntity<List<Ponuda>>dajSvePonude() {
-		List<Ponuda> listaPonuda = ponudaService.prikaziPonude();
+		List<Ponuda> listaPonuda = ponudaService.dajSvePonude();
 		return new ResponseEntity<List<Ponuda>>(listaPonuda, HttpStatus.OK);
 	}
 	
@@ -89,7 +89,7 @@ public class PonudaController {
 	@DeleteMapping("obrisiPonudu/{id}")
 	public ResponseEntity<Void> obrisiPonudu(@PathVariable("id") Integer id) {
 	    try {
-            ponudaService.obrisiPonuduId(id);
+            ponudaService.obrisiPonudu(id);
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         }
         catch(NoSuchElementException ex)

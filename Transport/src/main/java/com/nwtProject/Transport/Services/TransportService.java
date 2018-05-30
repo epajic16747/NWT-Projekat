@@ -49,4 +49,16 @@ public class TransportService implements ITransportService {
 		transportRepo.delete(dajTransport(idTransporta));
 	
 	}
+	
+	@Override
+	public List<Transport> dajAktivneTransporte()
+
+	{
+		List<Transport> aktivniTransporti =(List<Transport>) transportRepo.dajAktivne("aktivan");
+		return aktivniTransporti;
+		
+	}
+	
+	
+	
 }

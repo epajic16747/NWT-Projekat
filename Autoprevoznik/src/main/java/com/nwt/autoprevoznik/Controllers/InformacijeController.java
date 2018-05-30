@@ -58,7 +58,7 @@ public class InformacijeController {
 	{
 
         try {
-            informacijeService.dodajInformaciju(i);
+            informacijeService.dodajInformacije(i);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(builder.path("/informacije/{id}").buildAndExpand(i.getInformacijeId()).toUri());
             return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -91,7 +91,7 @@ public class InformacijeController {
 	@DeleteMapping("obrisiInformacije/{id}")
 	public ResponseEntity<Void> obrisiInformacije(@PathVariable("id") Integer id) {
 	    try {
-            informacijeService.obrisiInformacijuId(id);
+            informacijeService.obrisiInformaciju(id);
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         }
         catch(NoSuchElementException ex)

@@ -1,54 +1,53 @@
 package com.nwt.autoprevoznik.Services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nwt.autoprevoznik.Models.Autoprevoznik;
 import com.nwt.autoprevoznik.Models.Informacije;
-import com.nwt.autoprevoznik.Repositories.AutoprevoznikRepository;
 import com.nwt.autoprevoznik.Repositories.InformacijeRepository;
 
-import java.util.List;
-import java.util.ArrayList;
-
 @Service
-public class InformacijeService {
+public class InformacijeService implements IInformacijeService {
 	
 	@Autowired
 	private InformacijeRepository informacijeRepository;
 
-	public List<Informacije> prikaziInformacije()
-	{
-		List<Informacije> lista = new ArrayList();
-		informacijeRepository.findAll().forEach(lista::add);
-		return lista;
-		
+	@Override
+	public List<Informacije> prikaziInformacije() {
+		List<Informacije> listaInformacija = new ArrayList<>();
+		informacijeRepository.findAll().forEach(a-> listaInformacija.add(a));
+		return listaInformacija;
 	}
-	
-	public void dodajInformaciju(Informacije i)
-	{
-		informacijeRepository.save(i);
-	}
-	
-	public void obrisiInformaciju(Informacije i)
-	{
-		informacijeRepository.delete(i);
-	}
-	
-	public void obrisiInformacijuId(int id)
-	{
-		informacijeRepository.deleteById(id);
-	}
-	
-	public void azurirajInformaciju(Informacije i)
-	{
-		informacijeRepository.save(i);
-	}
-	public Informacije dajInformaciju(Integer id) {
-		// TODO Auto-generated method stub
-		Informacije informacije = informacijeRepository.findById(id).get();
 
+	@Override
+	public Informacije dajInformaciju(int idInformacije) {
+		Informacije informacije = informacijeRepository.findById(idInformacije).get();
 		return informacije;
 	}
+
+	@Override
+	public void dodajInformacije(Informacije informacije) {
+		informacijeRepository.save(informacije);
+		
+	}
+
+	@Override
+	public void azurirajInformaciju(Informacije informacije) {
+		informacijeRepository.save(informacije);
+		
+	}
+
+	@Override
+	public void obrisiInformaciju(int idInformacije) {
+		informacijeRepository.delete(dajInformaciju(idInformacije));
+		
+	}
+
 	
+	
+	
+
 }

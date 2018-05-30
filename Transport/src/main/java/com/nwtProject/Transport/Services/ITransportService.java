@@ -12,5 +12,5 @@ public interface ITransportService {
 	void dodajTransport(Transport transport);
 	void azurirajTransport(Transport transport);
 	void obrisiTransport(int idTransport);
-
+	List<Transport> dajAktivneTransporte();
 }

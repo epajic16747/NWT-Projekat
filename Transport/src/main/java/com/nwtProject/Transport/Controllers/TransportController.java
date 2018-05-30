@@ -81,6 +81,15 @@ public class TransportController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		
 	}	
+	
+	@GetMapping("dajAktivneTransporte")
+	public ResponseEntity<List<Transport>> dajAktivneTransporte()
+	{
+		List<Transport> aktivniTransporti = transportService.dajAktivneTransporte();
+		return new ResponseEntity<List<Transport>>(aktivniTransporti, HttpStatus.OK);
+	}
+	
+	
 
 
 }
