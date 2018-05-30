@@ -6,6 +6,7 @@ import App from './Components/App.js';
 import {UserRegistration} from './Views/UserRegistration.js';
 import {RegistracijaKompanije} from './Views/RegistracijaKompanije.js';
 import {RegistracijaAutoprevoznika} from './Views/RegistracijaAutoprevoznika.js';
+import {Korisnici} from './Views/Korisnici.js';
 
  export const routes = ( 
     
@@ -17,6 +18,7 @@ import {RegistracijaAutoprevoznika} from './Views/RegistracijaAutoprevoznika.js'
             <Route path="/registracijaKorisnika" component={UserRegistration}/>     
             <Route path="/kreirajKompaniju" component={RegistracijaKompanije}/>     
             <Route path="/kreirajAutoprevoznika" component={RegistracijaAutoprevoznika}/>   
+            <Route path="/korisnici" component={Korisnici}/>               
 
         </Switch>
     </BrowserRouter>

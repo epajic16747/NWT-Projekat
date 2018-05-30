@@ -184,7 +184,10 @@ const MenuItemGroup = Menu.ItemGroup;
           </Menu.Item>   
           <Menu.Item key="registracijaKorisnika">
                 <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
-              </Menu.Item>                    
+              </Menu.Item>         
+          <Menu.Item key="korisnici">
+                <Link to="/korisnici">Korisnici</Link>
+              </Menu.Item>                             
           <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
             <Link to="/signUp" >Sign Up</Link>
           </Menu.Item>
@@ -193,7 +196,7 @@ const MenuItemGroup = Menu.ItemGroup;
     }   
           
     }
-  
+    
 
 
 }

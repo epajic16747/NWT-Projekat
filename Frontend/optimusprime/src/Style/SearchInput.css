@@ -1,0 +1,25 @@
+input.userSearch[type=text] {
+    width: 200px;
+    margin-left: 100px;
+    text-align:center;
+    box-sizing: border-box;
+    border: 3px solid rgb(10, 9, 9);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./icons/search.png');
+    background-position: 0px 0px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input.userSearch[type=text]:focus {
+    width: 60%;
+}
+
+
+div.userRow {
+    background: linear-gradient(rgb(160, 160, 160), rgb(99, 95, 95));
+}
