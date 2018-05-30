@@ -4,7 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
+<<<<<<< HEAD
 	<artifactId>Autoprevoznik</artifactId>
+=======
+>>>>>>> cc87da7f6e6077962d14863c4158e90e75bf163b
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -119,4 +122,5 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+    <artifactId>Autoprevoznik</artifactId>
 </project>

@@ -9,6 +9,7 @@ import 'antd/dist/antd.css'
 //CONSTANTS[BEGIN]
 const FormItem = Form.Item;
 const Option = Select.Option;
+const { TextArea } = Input;
 const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -20,48 +21,48 @@ const formItemLayout = {
     },
   };
 //[END]
-class RegistrationForm extends Component {
+class KompanijaRegistration extends Component {
 
     constructor(){
       super()
       this.state={   
           
-          username : '',
-          password : '',
+          naziv : '',
+          opis : '',
+          adresa : '',
+          telefon: '',
           email : '',
-          datum : '',
-          pol : 'false',
-          
-          gender : 2,
+
 
           //Validacija
-          v_username : false,
-          v_password : false, 
-          v_password_confirm : false,
+          v_naziv: false,
+          v_opis : false, 
+          v_adresa: false,
+          v_telefon: false,
           v_email : false, 
-          v_datum : false,
+
 
           inicijalnoStanje : true,
           uspjesnaRegistracija : false
       }
     }
-    validateUsername = (rule, value, callback) => {
+    validateNaziv = (rule, value, callback) => {
         
         if(value == ""){   
-            callback('Molimo Vas da unesite korisnicko ime!');
-            this.setState({v_username : false})
+            callback('Molimo Vas da unesite naziv kompanije!');
+            this.setState({v_naziv : false})
             return;
         }
-        else if (value.length <= 5) {
-          callback('Korisnicko ime mora imati bar 6 znakova!');
-          this.setState({v_username : false})
+        else if (value.length <= 2) {
+          callback('Naziv kompanije ime mora imati bar 3 znaka!');
+          this.setState({v_naziv : false})
           return;
         }
-        //Unique username 
+ 
         else {
           this.setState({
-              username : value,
-              v_username : true
+              naziv : value,
+              v_naziv: true
           })
           callback();
           return;
@@ -69,45 +70,67 @@ class RegistrationForm extends Component {
 
         
     }
-    validatePassword = (rule, value, callback) => {
-        if(value == ""){
-            callback('Molimo Vas da unesite korisnicku sifru');
-            this.setState({v_password : false})
-            return;            
+    validateOpis = (rule,value, callback) => {
+        if(value == ""){   
+            callback('Molimo Vas da unesite opis kompanije!');
+            this.setState({v_opis: false})
+            return;
         }
-        else if(value.length <= 7) {
-            callback('Korisnicka sfira mora imati bar 8 znakova!');
-            this.setState({v_password : false})
-            return;              
+        else if (value.length <= 49) {
+          callback('Opis mora imati bar 50 znakova!');
+          this.setState({v_opis : false})
+          return;
         }
-        //Extra validations
+      
         else {
-            console.log("IMA LI ME OVJDE");
-            this.setState({
-                password : value,
-                v_password : true
-            })
-            callback();
-            return;       
+          this.setState({
+              opis: value,
+              v_opis : true
+          })
+          callback();
+          return;
+        }        
+    }
+    validateAdresa = (rule, value, callback) => {
+        if(value == ""){   
+            callback('Molimo Vas da unesite adresu kompanije!');
+            this.setState({v_adresa : false})
+            return;
+        }
+        else if (value.length <= 15) {
+          callback('Adresa kompanije ime mora imati bar 16 znaka!');
+          this.setState({v_adresa : false})
+          return;
+        }
+ 
+        else {
+          this.setState({
+              adresa : value,
+              v_adresa: true
+          })
+          callback();
+          return;
         }
     }
-    validatePasswordConfirm = (rule, value, callback) => {
-
-        const form = this.props.form;
-        if(value == ""){
-            callback('Molimo Vas da unesite korisnicku sifru');
-            this.setState({v_password_confirm : false});
-            return;             
-        }
-        else if(value != form.getFieldValue('password')){
-            callback('Sifra i potvrda sifre se ne poklapaju!');
-            this.setState({v_password_confirm : false});
-            return;                         
-        }
-        else {
-            this.setState({v_password_confirm : true});
-            callback();
+    validateTelefon = (rule, value, callback) => {
+        if(value == ""){   
+            callback('Molimo Vas da unesite telefon kompanije!');
+            this.setState({v_telefon : false})
             return;
+        }
+        else if (value.length <= 8) {
+          callback('Naziv kompanije ime mora imati bar 9 znaka!');
+          this.setState({v_telefon : false})
+          return;
+        }
+ 
+        else {
+          this.setState({
+              telefon : value,
+              v_telefon: true
+          })
+          callback();
+          return;
         }
     }
     validateEmail = (rule,value, callback) => {
@@ -141,9 +164,9 @@ class RegistrationForm extends Component {
         console.log("BIND STATE za fetch");
         const state = this.state;
         console.log("STATE: ", state);
-        if(state.v_username && state.v_password && state.v_password_confirm && state.v_email && state.v_datum) {
+        if(state.v_naziv && state.v_opis && state.v_adresa && state.v_email && state.v_telefon) {
             console.log("USAO U IF");
-            fetch('http://localhost:4000/korisnik/registracija',{
+            fetch('url',{
                 mode : 'cors',
                 method: 'POST',
                 headers: {
@@ -151,12 +174,11 @@ class RegistrationForm extends Component {
                     "Accept": "application/json"
                 },
                  body: JSON.stringify({
-                  korisnickoIme: state.username,
-                  sifra: state.password,
-                  email: state.email,
-                  pol: state.pol,
-                  zaposlenik: 'false',
-                  datumRodjenja: state.datum            
+                  naziv : state.naziv,
+                  opis : state.opis,
+                  adresa : state.adresa,
+                  telefon : state.telefon,
+                  email  :state.email       
                 })
               })
             .then((response) => {   
@@ -170,11 +192,11 @@ class RegistrationForm extends Component {
             })
 
             this.setState({
-                v_username : false,
-                v_password : false, 
-                v_password_confirm : false,
+                v_naziv: false,
+                v_opis : false, 
+                v_adresa: false,
+                v_telefon: false,
                 v_email : false, 
-                v_datum : false
             })
             //Neke validacije
         }
@@ -201,7 +223,7 @@ class RegistrationForm extends Component {
     else {
         responseMessage = <Alert
                             message="Uspjesna registracija!"
-                            description="Korisnik je uspjesno registrovan!"
+                            description="Kompanija je uspjesno registrovana!"
                             type="success"
                             showIcon
                            />
@@ -212,52 +234,71 @@ class RegistrationForm extends Component {
         <Form onSubmit={this.handleSubmit}>
             <FormItem
                 {...formItemLayout}
-                label="Korisnicko ime:"
+                label="Naziv:"
      
                 
             >
-                {getFieldDecorator('username', {
+                {getFieldDecorator('naziv', {
                     rules: [
                         {
-                        validator : this.validateUsername,
+                        validator : this.validateNaziv,
                         }
                     ]
                 })(
-                    <Input placeholder ="Unesite korisnicko ime..."/>
+                    <Input placeholder ="Unesite naziv kompanije..."/>
                 )}
             </FormItem>
-            <FormItem
-                {...formItemLayout}
-                label="Password:"                
-            >
-                {getFieldDecorator('password', 
-                {
-                    rules: [
-                        {
-                        validator : this.validatePassword,
-                        },
-                    ]
-                })(
-                    <Input type="password" placeholder ="Unesite vasu zeljenu sifru..."/>
-                )}
-            </FormItem>     
 
             <FormItem
                 {...formItemLayout}
-                label="Password confirm:"                
+                label="Naziv:"
+     
+                
             >
-                {getFieldDecorator('password_c', 
-                {
+                {getFieldDecorator('opis', {
                     rules: [
                         {
-                        validator : this.validatePasswordConfirm,
-                        },
+                        validator : this.validateOpis,
+                        }
                     ]
                 })(
-                    <Input type="password" placeholder ="Potvrda sifre..."/>
+                   
+                    <TextArea placeholder="Opis kompanije..." autosize />
                 )}
-            </FormItem>     
-
+            </FormItem>  
+            <FormItem
+                {...formItemLayout}
+                label="Adresa:"
+     
+                
+            >
+                {getFieldDecorator('adresa', {
+                    rules: [
+                        {
+                        validator : this.validateAdresa,
+                        }
+                    ]
+                })(
+                    <Input placeholder ="Unesite adresu kompanije..."/>
+                )}
+            </FormItem>    
+            <FormItem
+                {...formItemLayout}
+                label="Telefon:"
+     
+                
+            >
+                {getFieldDecorator('telefon', {
+                    rules: [
+                        {
+                        validator : this.validateTelefon,
+                        }
+                    ]
+                })(
+                    <Input placeholder ="Unesite telefon kompanije..."/>
+                )}
+            </FormItem>                                
+                            
             <FormItem
                 {...formItemLayout}
                 label="Email:"                
@@ -272,7 +313,7 @@ class RegistrationForm extends Component {
                 })(
                     <Input  placeholder ="Email adresa..."/>
                 )}
-            </FormItem>                              
+            </FormItem> 
 
 
             <Button  type="primary" htmlType="submit">
@@ -286,5 +327,5 @@ class RegistrationForm extends Component {
 
 
 }
-export default Form.create()(RegistrationForm)
+export default Form.create()(KompanijaRegistration)
 
