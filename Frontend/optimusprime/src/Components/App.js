@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from '../assets/PageImages/logo.svg';
 import {BarLoader} from 'react-spinners';
 import '../Style/App.css';
-//import {Home} from '../Views/Home.js'
+
+import {Home} from '../Views/Home.js'
 
 
 
@@ -13,7 +14,7 @@ class App extends Component {
     this.state = {
       loading : true
     }
-    localStorage.setItem('initialLoading', 'true');
+    localStorage.setItem('initialLoading', 'false');
   }
     componentWillMount(){
       this.loaderImgStyle={
@@ -53,8 +54,8 @@ class App extends Component {
  
     }
     else {
-        //  data = <Home />
-        data = <h1>Test</h1>
+          data = <Home />
+       // data = <h1>Test</h1>
     }
     return (
         <div>  {data}</div>

@@ -32,30 +32,19 @@ const MenuItemGroup = Menu.ItemGroup;
             selectedKeys={[this.state.current]}
             mode="horizontal"
             theme= "light"
-          >
-             <Menu.Item key="home">
-             <Link to="/home" >Home</Link>
-           </Menu.Item>
-           <Menu.Item key="shop">
-           <Link to="/proizvodi">Shop</Link>
-           </Menu.Item>
-           <Menu.Item key="about">
-           <Link to="/about">About Us</Link>
-           </Menu.Item>   
-           <Menu.Item key="contact">
-             <Link to="/contact">Contact Us</Link>
-           </Menu.Item>    
-                   
+          >         
+            <Menu.Item key="home">
+              <Link to="/home" >Home</Link>
+            </Menu.Item>
+
             <Menu.Item key="signIn"  style={{ 'float': 'right'}}>
               <Link to="/signIn" >Sign In</Link>
             </Menu.Item>
-            <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
-              <Link to="/signUp" >Sign Up</Link>
-            </Menu.Item>
+ 
           </Menu>
           );
         }
-        else {
+        else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'autoprevoznik') {
           return (
             <Menu
             onClick={this.handleClick}
@@ -66,30 +55,143 @@ const MenuItemGroup = Menu.ItemGroup;
               <Menu.Item key="home">
                 <Link to="/home" >Home</Link>
               </Menu.Item>
-              <Menu.Item key="shop">
-              <Link to="/proizvodi">Shop</Link>
+              <Menu.Item key="autoprevoznik">
+              <Link to="/autoprevoznik">Autoprevoznik</Link>
               </Menu.Item>
-              <Menu.Item key="about">
-              <Link to="/about">About Us</Link>
+              <Menu.Item key="transporti">
+              <Link to="/transporti">Transporti</Link>
               </Menu.Item>   
-              <Menu.Item key="contact">
-                <Link to="/contact">Contact Us</Link>
+              <Menu.Item key="kreirajTransport">
+                <Link to="/kreirajTransport">Kreiraj Transport</Link>
               </Menu.Item>   
-              <Menu.Item key="reportProblem">
-                <Link to="/reportProblem">Report a problem</Link>
-              </Menu.Item>    
-              <Menu.Item key="korpa">
-                <Link to="/korpa">Korpa</Link>
-              </Menu.Item>                                  
-              <Menu.Item key="signIn"  style={{ 'float': 'right'}}>
-                <Link to="/signIn" >Sign In</Link>
-              </Menu.Item>
               <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
                 <Link to="/signUp" >Sign Up</Link>
               </Menu.Item>
             </Menu>
           );
+        }
+        else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'autoprevoznik') {
+          return (
+            <Menu
+            onClick={this.handleClick}
+            selectedKeys={[this.state.current]}
+            mode="horizontal"
+            theme= "light"
+            >
+              <Menu.Item key="home">
+                <Link to="/home" >Home</Link>
+              </Menu.Item>
+              <Menu.Item key="autoprevoznik">
+              <Link to="/autoprevoznik">Autoprevoznik</Link>
+              </Menu.Item>
+              <Menu.Item key="ponude">
+              <Link to="/ponude">Ponude</Link>
+              </Menu.Item>   
+              <Menu.Item key="kreirajPonudu">
+                <Link to="/kreirajPonudu">Kreiraj Ponudu</Link>
+              </Menu.Item>   
+
+              <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
+                <Link to="/signUp" >Sign Up</Link>
+              </Menu.Item>
+            </Menu>
+          );          
       }
+      else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'kompanija') {
+        return (
+          <Menu
+          onClick={this.handleClick}
+          selectedKeys={[this.state.current]}
+          mode="horizontal"
+          theme= "light"
+          >
+            <Menu.Item key="home">
+              <Link to="/home" >Home</Link>
+            </Menu.Item>
+            <Menu.Item key="kompanija">
+            <Link to="/kompanija">Kompanija</Link>
+            </Menu.Item>
+            <Menu.Item key="transporti">
+            <Link to="/transporti">Transporti</Link>
+            </Menu.Item>   
+            <Menu.Item key="kreirajTransport">
+              <Link to="/kreirajTransport">Kreiraj Transport</Link>
+            </Menu.Item>   
+            <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
+              <Link to="/signUp" >Sign Up</Link>
+            </Menu.Item>
+          </Menu>
+        );          
+      }
+    else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'admin') {
+      return (
+        <Menu
+        onClick={this.handleClick}
+        selectedKeys={[this.state.current]}
+        mode="horizontal"
+        theme= "light"
+        >
+          <Menu.Item key="home">
+            <Link to="/home" >Home</Link>
+          </Menu.Item>
+          <Menu.Item key="kompanije">
+          <Link to="/kompanije">Kompanije</Link>
+          </Menu.Item>
+          <Menu.Item key="autoprevoznici">
+              <Link to="/autoprevoznici">Autoprevoznik</Link>
+          </Menu.Item>          
+          <Menu.Item key="sviTransporti">
+          <Link to="/sviTransporti">Transporti</Link>
+          </Menu.Item>   
+          <Menu.Item key="kreirajKompaniju">
+            <Link to="/kreirajKompanijy">Kreiraj Kompaniju</Link>
+          </Menu.Item>   
+          <Menu.Item key="kreirajAutoprevoznika">
+            <Link to="/kreirajAutoprevoznika">Kreiraj Autoprevoznika</Link>
+          </Menu.Item>  
+                    
+          <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
+            <Link to="/signUp" >Sign Up</Link>
+          </Menu.Item>
+        </Menu>
+      );          
+    } 
+    else {
+      return (
+        <Menu
+        onClick={this.handleClick}
+        selectedKeys={[this.state.current]}
+        mode="horizontal"
+        theme= "light"
+        >
+          <Menu.Item key="home">
+            <Link to="/home" >Home</Link>
+          </Menu.Item>
+          <Menu.Item key="kompanije">
+          <Link to="/kompanije">Kompanije</Link>
+          </Menu.Item>
+          <Menu.Item key="autoprevoznici">
+              <Link to="/autoprevoznici">Autoprevoznik</Link>
+          </Menu.Item>          
+          <Menu.Item key="sviTransporti">
+          <Link to="/sviTransporti">Transporti</Link>
+          </Menu.Item>   
+          <Menu.Item key="kreirajKompaniju">
+            <Link to="/kreirajKompaniju">Kreiraj Kompaniju</Link>
+          </Menu.Item>   
+          <Menu.Item key="kreirajAutoprevoznika">
+            <Link to="/kreirajAutoprevoznika">Kreiraj Autoprevoznika</Link>
+          </Menu.Item>   
+          <Menu.Item key="registracijaKorisnika">
+                <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
+              </Menu.Item>                    
+          <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
+            <Link to="/signUp" >Sign Up</Link>
+          </Menu.Item>
+        </Menu>
+      );  
+    }   
+          
     }
   
 
