@@ -35,6 +35,46 @@ public class Ponuda {
     @JoinColumn(name="autoprevoznikId", nullable = false)
     private Autoprevoznik autoprevonikId;
 
-    Ponuda() {}
+    public int getPonudaId() {
+		return ponudaId;
+	}
+
+	public void setPonudaId(int ponudaId) {
+		this.ponudaId = ponudaId;
+	}
+
+	public double getCijena() {
+		return cijena;
+	}
+
+	public void setCijena(double cijena) {
+		this.cijena = cijena;
+	}
+
+	public String getTipVozila() {
+		return tipVozila;
+	}
+
+	public void setTipVozila(String tipVozila) {
+		this.tipVozila = tipVozila;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Autoprevoznik getAutoprevonikId() {
+		return autoprevonikId;
+	}
+
+	public void setAutoprevonikId(Autoprevoznik autoprevonikId) {
+		this.autoprevonikId = autoprevonikId;
+	}
+
+	Ponuda() {}
 
 }

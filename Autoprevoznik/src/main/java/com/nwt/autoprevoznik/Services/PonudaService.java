@@ -37,14 +37,20 @@ public class PonudaService {
 		ponudaRepository.delete(p);
 	}
 	
-	public void obrisiIPonuduId(int id)
+	public void obrisiPonuduId(int id)
 	{
 		ponudaRepository.deleteById(id);
 	}
 	
-	public void izmijeniPonudu(Ponuda p)
+	public void azurirajPonudu(Ponuda p)
 	{
 		ponudaRepository.save(p);
 	}
+	public Ponuda dajPonudu(Integer id) {
+		// TODO Auto-generated method stub
+		Ponuda ponuda = ponudaRepository.findById(id).get();
 
+		return ponuda;
+	}
+	
 }

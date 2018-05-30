@@ -1,5 +1,7 @@
 package com.nwt.autoprevoznik.Models;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,5 +55,9 @@ public class Informacije {
 		public void setOpis(String opis) {
 			this.opis = opis;
 		}
+
+
+
+		
 
 }

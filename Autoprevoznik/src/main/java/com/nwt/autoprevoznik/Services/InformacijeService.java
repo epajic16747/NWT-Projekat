@@ -40,8 +40,15 @@ public class InformacijeService {
 		informacijeRepository.deleteById(id);
 	}
 	
-	public void izmijeniInformaciju(Informacije i)
+	public void azurirajInformaciju(Informacije i)
 	{
 		informacijeRepository.save(i);
 	}
+	public Informacije dajInformaciju(Integer id) {
+		// TODO Auto-generated method stub
+		Informacije informacije = informacijeRepository.findById(id).get();
+
+		return informacije;
+	}
+	
 }
