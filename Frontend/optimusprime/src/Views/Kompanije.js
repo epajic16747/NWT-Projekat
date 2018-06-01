@@ -4,7 +4,7 @@ import { FooterC } from '../Components/Menus/FooterC';
 import { Row, Col } from 'antd';
 import { Layout } from 'antd';
 
-import {KorisniciList} from '../Components/Liste/KorisniciList.js';
+import {KompanijeList} from '../Components/Liste/KompanijeList.js';
 
 
 import '../Style/Layout.css';
@@ -13,7 +13,7 @@ import '../Style/Layout.css';
 const { Header, Footer, Sider, Content } = Layout;
 
 
-export class Korisnici extends Component{
+export class Kompanije extends Component{
 
     constructor(){
         super()
@@ -30,9 +30,9 @@ export class Korisnici extends Component{
                     <MainMenuUser />
 
                     <Content>
-                        <h1 align="center">Korisnici</h1>
+                        <h1 align="center">Kompanije</h1>
                     <Row>
-                    <Col span={18} offset={6}><KorisniciList/></Col>
+                    <Col span={18} offset={6}><KompanijeList/></Col>
                 </Row>
                     </Content>
                     <FooterC/>

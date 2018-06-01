@@ -1,18 +1,20 @@
 import React, {Component}  from 'react';
-import {KorisnikRow} from '../Rows/KorisnikRow';
+import {KompanijaRow} from '../Rows/KompanijaRow';
 
 import '../../Style/SearchInput.css';
 
 
-export class KorisniciList extends Component{
+export class KompanijeList extends Component{
     constructor() {
         super()
             this.state={
                korisnici :{
-                   "0" : { "korisnickoIme" : "Test", "email" : "enis.pajic1@gmail.com", "sifra" : "15674346"},
-                   "1" : { "korisnickoIme" : "Test1", "email" : "enis.pajic2@gmail.com", "sifra" : "15674346fsd"},
-                   "2" : { "korisnickoIme" : "Test2", "email" : "enis.pajic3@gmail.com", "sifra" : "156fdsfds74346"},
-                   "3" : { "korisnickoIme" : "Test3", "email" : "enis.pajic4@gmail.com", "sifra" : "1567sdfsdfsdsdf4346"}
+                   "0" : { "naiziv" : "K1", "email" : "enis.pajic1@gmail.com", "adresa" : "Trg Barcelone 6", "telefon" : "064-588-578"},
+                   "1" : { "naiziv" : "K2", "email" : "enis.pajic2@gmail.com", "adresa" : "Trg Barcelone 60", "telefon" : "063-588-578"},
+                   "2" : { "naiziv" : "K3", "email" : "enis.pajic3@gmail.com", "adresa" : "Trg Barcelone 60", "telefon" : "062-588-578"},
+                   "3" : { "naiziv" : "K5", "email" : "enis.pajic4@gmail.com", "adresa" : "Trg Barcelone 60", "telefon" : "061-568-578"},
+                   "4" : { "naiziv" : "K6", "email" : "enis.pajic5@gmail.com", "adresa" : "Trg Barcelone 60", "telefon" : "060-588-578"},
+                   "5" : { "naiziv" : "K7", "email" : "enis.pajic6@gmail.com", "adresa" : "Trg Barcelone 60", "telefon" : "058-588-578"}
                },
                loading: false,
                input : ''
@@ -92,7 +94,7 @@ export class KorisniciList extends Component{
 
     }
  
-    obrisiKorisnikaFront = (index) => {
+    obrisiKompanijuFront  = (index) => {
 
         const korisnici = {...this.state.korisnici};
         delete korisnici[index];
@@ -111,13 +113,13 @@ export class KorisniciList extends Component{
 
         return(
              <div >
-                <input  className="userSearch" type="text" name="search" placeholder="Unesite ime korisnika..." value={this.state.input} onChange={(e) => this.handleInput(e)}/>
+                <input  className="userSearch" type="text" name="search" placeholder="Unesite ime kompanije..." value={this.state.input} onChange={(e) => this.handleInput(e)}/>
                 <br/>
                 <br/>
                 {poruka}
                 {
                 (Object.keys(this.state.korisnici)
-                .map(key => <KorisnikRow key={key} index = {key} details={this.state.korisnici[key]} obrisiKorisnikaFront = {this.obrisiKorisnikaFront} />))
+                .map(key => <KompanijaRow key={key} index = {key} details={this.state.korisnici[key]} obrisiKompanijuFront = {this.obrisiKompanijuFront } />))
                 }
 
             </div>

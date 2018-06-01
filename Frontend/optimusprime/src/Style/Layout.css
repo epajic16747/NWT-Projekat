@@ -1,15 +1,7 @@
-.ant-layout-has-sider .ant-layout-sider .ant-layout-sider-children {
-    max-width: 50px;
-    width: 30px;
-
-}
-.ant-layout-has-sider .ant-layout-sider {
-    max-width: 50px;
-    width: 30px !important;
-}
-
+    
 .ant-layout-sider{
     flex: 0 !important;
-    min-width: 90px !important;
-    background-color: #000000;
+    min-width: 120px !important;
+    background-image: url('../assets/PageImages/formBackgroundPicture.jpg');
+
 }

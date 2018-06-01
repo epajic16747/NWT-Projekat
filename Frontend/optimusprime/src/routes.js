@@ -7,6 +7,8 @@ import {UserRegistration} from './Views/UserRegistration.js';
 import {RegistracijaKompanije} from './Views/RegistracijaKompanije.js';
 import {RegistracijaAutoprevoznika} from './Views/RegistracijaAutoprevoznika.js';
 import {Korisnici} from './Views/Korisnici.js';
+import { Kompanije } from './Views/Kompanije';
+import { Autoprevoznici } from './Views/Autoprevoznici';
 
  export const routes = ( 
     
@@ -18,7 +20,9 @@ import {Korisnici} from './Views/Korisnici.js';
             <Route path="/registracijaKorisnika" component={UserRegistration}/>     
             <Route path="/kreirajKompaniju" component={RegistracijaKompanije}/>     
             <Route path="/kreirajAutoprevoznika" component={RegistracijaAutoprevoznika}/>   
-            <Route path="/korisnici" component={Korisnici}/>               
+            <Route path="/korisnici" component={Korisnici}/>    
+            <Route path="/kompanije" component={Kompanije} />           
+            <Route path="/autoprevoznici" component={Autoprevoznici} />   
 
         </Switch>
     </BrowserRouter>

@@ -52,9 +52,9 @@ export class KorisnikRow extends Component {
                     </Col>
                     <Col span={8}></Col>
                     <Col span={8}>
-                        <Button type="primary"   style={{marginTop: '10px', width : '170px'}} onClick={this.obrisiKorisnika} >Pridruzi kompaniji</Button>
+                        <Button type="primary"   style={{marginTop: '10px', width : '170px'}}  >Pridruzi kompaniji</Button>
                         <br />
-                        <Button type="primary"  style={{marginTop: '10px',width : '170px'}} onClick={this.obrisiKorisnika} >Priduzi autoprevozniku</Button>     
+                        <Button type="primary"  style={{marginTop: '10px',width : '170px'}}>Priduzi autoprevozniku</Button>     
                         <br />               
                         <Button type="danger"   style={{marginTop: '8px',width : '170px'}} onClick={this.obrisiKorisnika} >Obrisi</Button>
                     </Col>

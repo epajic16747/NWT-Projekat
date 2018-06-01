@@ -5,7 +5,7 @@ import RegistrationForm from './RegistrationForm.js'
 //import {Modal, Button, Popover, Tooltip} from 'react-bootstrap'
 import {Link, Redirect} from 'react-router-dom'
 import { Modal, Button } from 'antd';
-
+import '../../Style/Background.css';
 
 export class ModalForm extends Component{
 

@@ -44,7 +44,7 @@ const MenuItemGroup = Menu.ItemGroup;
           </Menu>
           );
         }
-        else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'autoprevoznik') {
+        else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'kompanija') {
           return (
             <Menu
             onClick={this.handleClick}
@@ -55,8 +55,8 @@ const MenuItemGroup = Menu.ItemGroup;
               <Menu.Item key="home">
                 <Link to="/home" >Home</Link>
               </Menu.Item>
-              <Menu.Item key="autoprevoznik">
-              <Link to="/autoprevoznik">Autoprevoznik</Link>
+              <Menu.Item key="kompanija">
+              <Link to="/kompanija">Autoprevoznik</Link>
               </Menu.Item>
               <Menu.Item key="transporti">
               <Link to="/transporti">Transporti</Link>
@@ -91,68 +91,56 @@ const MenuItemGroup = Menu.ItemGroup;
                 <Link to="/kreirajPonudu">Kreiraj Ponudu</Link>
               </Menu.Item>   
 
-              <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
-                <Link to="/signUp" >Sign Up</Link>
+              <Menu.Item key="signIn"  style={{ 'float': 'right'}}>
+                <Link to="/signIn" >Sign In</Link>
               </Menu.Item>
             </Menu>
           );          
       }
-      else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'kompanija') {
-        return (
-          <Menu
-          onClick={this.handleClick}
-          selectedKeys={[this.state.current]}
-          mode="horizontal"
-          theme= "light"
-          >
-            <Menu.Item key="home">
-              <Link to="/home" >Home</Link>
-            </Menu.Item>
-            <Menu.Item key="kompanija">
-            <Link to="/kompanija">Kompanija</Link>
-            </Menu.Item>
-            <Menu.Item key="transporti">
-            <Link to="/transporti">Transporti</Link>
-            </Menu.Item>   
-            <Menu.Item key="kreirajTransport">
-              <Link to="/kreirajTransport">Kreiraj Transport</Link>
-            </Menu.Item>   
-            <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
-              <Link to="/signUp" >Sign Up</Link>
-            </Menu.Item>
-          </Menu>
-        );          
-      }
+
     else if(localStorage.getItem('prijavljen') == 'true' && localStorage.getItem('tipKorisnika') == 'admin') {
       return (
         <Menu
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"
-        theme= "light"
+        theme= "dark"
         >
           <Menu.Item key="home">
-            <Link to="/home" >Home</Link>
+            <Link to="/home" >Admin Home</Link>
           </Menu.Item>
-          <Menu.Item key="kompanije">
-          <Link to="/kompanije">Kompanije</Link>
-          </Menu.Item>
-          <Menu.Item key="autoprevoznici">
+          <SubMenu title={<span><Icon type="setting" />App users</span>}>
+            <MenuItemGroup title="Useri">
+              <Menu.Item key="kompanije">
+              <Link to="/kompanije">Kompanije</Link>
+              </Menu.Item>
+              <Menu.Item key="autoprevoznici">
               <Link to="/autoprevoznici">Autoprevoznik</Link>
-          </Menu.Item>          
+              </Menu.Item>   
+              <Menu.Item key="korisnici">
+                <Link to="/korisnici">Korisnici</Link>
+              </Menu.Item>                   
+            </MenuItemGroup>
+            
+          </SubMenu>          
+
+       
           <Menu.Item key="sviTransporti">
           <Link to="/sviTransporti">Transporti</Link>
           </Menu.Item>   
           <Menu.Item key="kreirajKompaniju">
-            <Link to="/kreirajKompanijy">Kreiraj Kompaniju</Link>
+            <Link to="/kreirajKompaniju">Kreiraj Kompaniju</Link>
           </Menu.Item>   
           <Menu.Item key="kreirajAutoprevoznika">
             <Link to="/kreirajAutoprevoznika">Kreiraj Autoprevoznika</Link>
           </Menu.Item>  
+          <Menu.Item key="registracijaKorisnika">
+                <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
+              </Menu.Item>             
                     
-          <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
-            <Link to="/signUp" >Sign Up</Link>
-          </Menu.Item>
+          <Menu.Item key="signIn"  style={{ 'float': 'right'}}>
+          <Link to="/signIn" >Sign In</Link>
+        </Menu.Item>
         </Menu>
       );          
     } 
@@ -162,17 +150,27 @@ const MenuItemGroup = Menu.ItemGroup;
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"
-        theme= "light"
+        theme= "dark"
         >
           <Menu.Item key="home">
-            <Link to="/home" >Home</Link>
+            <Link to="/home" >Admin Home</Link>
           </Menu.Item>
-          <Menu.Item key="kompanije">
-          <Link to="/kompanije">Kompanije</Link>
-          </Menu.Item>
-          <Menu.Item key="autoprevoznici">
+          <SubMenu title={<span><Icon type="setting" />App users</span>}>
+            <MenuItemGroup title="Useri">
+              <Menu.Item key="kompanije">
+              <Link to="/kompanije">Kompanije</Link>
+              </Menu.Item>
+              <Menu.Item key="autoprevoznici">
               <Link to="/autoprevoznici">Autoprevoznik</Link>
-          </Menu.Item>          
+              </Menu.Item>   
+              <Menu.Item key="korisnici">
+                <Link to="/korisnici">Korisnici</Link>
+              </Menu.Item>                   
+            </MenuItemGroup>
+            
+          </SubMenu>          
+
+       
           <Menu.Item key="sviTransporti">
           <Link to="/sviTransporti">Transporti</Link>
           </Menu.Item>   
@@ -181,16 +179,14 @@ const MenuItemGroup = Menu.ItemGroup;
           </Menu.Item>   
           <Menu.Item key="kreirajAutoprevoznika">
             <Link to="/kreirajAutoprevoznika">Kreiraj Autoprevoznika</Link>
-          </Menu.Item>   
+          </Menu.Item>  
           <Menu.Item key="registracijaKorisnika">
                 <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
-              </Menu.Item>         
-          <Menu.Item key="korisnici">
-                <Link to="/korisnici">Korisnici</Link>
-              </Menu.Item>                             
-          <Menu.Item key="signUp"  style={{ 'float': 'right'}}>
-            <Link to="/signUp" >Sign Up</Link>
-          </Menu.Item>
+              </Menu.Item>             
+                    
+          <Menu.Item key="signIn"  style={{ 'float': 'right'}}>
+          <Link to="/signIn" >Sign In</Link>
+        </Menu.Item>
         </Menu>
       );  
     }   
