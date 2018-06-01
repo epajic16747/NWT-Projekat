@@ -15,5 +15,6 @@ public interface IKorisnikService {
 	void obrisiKorisnika(int idKorisnika);
 	boolean postojiKorisnikPoIdu(long idKorisnika);
 	boolean postojiKorisnikPoUsername(String username);
+	boolean postojiKorisnik(String username, String pass);
 	
 }

@@ -2,7 +2,7 @@ package com.nwtProject.KorisnikRecenzija.Services;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,9 +55,17 @@ public class KorisnikService implements IKorisnikService{
 	    return korisnikRepo.existsById(idKorisnika);
     }
     
+   
     public boolean postojiKorisnikPoUsername(String username){
         return korisnikRepo.existsByUsername(username);
     }
-
+    
+    public boolean postojiKorisnik(String username, String password) {
+        Optional<Korisnik> user = KorisnikRepozitorij.findByUsername(username);
+        if (((Optional<Korisnik>) user).isPresent() && user.get().getPassword() == password)
+        	return true;
+        else
+        	return false;
+    }
 
 }
