@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import java.util.Optional;
+
 import javax.persistence.Column;
 
 
@@ -113,5 +116,10 @@ public class Korisnik {
                 "Korisnik[id=%d, username='%s', email='%s']",
                 idKorisnika, password, email);
     }
+
+
+
+
+	
 
 }

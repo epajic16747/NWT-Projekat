@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,14 +23,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.nwt.autoprevoznik.Models.Informacije;
 import com.nwt.autoprevoznik.Models.Ponuda;
 import com.nwt.autoprevoznik.Services.PonudaService;
-
-@RestController
+@Controller
+@RequestMapping("ponude")
 public class PonudaController {
 	
 	@Autowired
 	private PonudaService ponudaService;
-	
-	
 	
 	@GetMapping("ponude")
 	public ResponseEntity<List<Ponuda>>dajSvePonude() {

@@ -1,7 +1,5 @@
 package com.nwtProject.KorisnikRecenzija.Controllers;
 
-
-
 import java.util.List;
 import java.util.*;
 
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import org.springframework.hateoas.Resource;
@@ -49,8 +48,14 @@ public class KorisnikKontroler {
             throw new IllegalArgumentException("Ne postji korisnik sa trazenim id-em");
         }
 	}
+	@GetMapping(value = "/user/{username}/pass/{pass}")
+	public boolean postojilikorisnik
+	  (@PathVariable String username, @PathVariable String pass) {
+	    return korisnikService.postojiKorisnik(username, pass);
+	}
 	
 	
+
 	@GetMapping("korisnici")
 	public ResponseEntity<List<Korisnik>>dajSveKorisnike() {
 		List<Korisnik> listaKorisnika = korisnikService.dajSveKorisnike();
@@ -105,7 +110,6 @@ public class KorisnikKontroler {
 
         }
         catch(Exception ex){
-//	        System.out.println("Nesto jakoo");
 //	        System.out.println(ex.getClass().getCanonicalName());
 	        throw new IllegalArgumentException("Desila se greska pri brisanju korisnika!");
         }

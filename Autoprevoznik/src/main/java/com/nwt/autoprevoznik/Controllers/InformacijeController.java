@@ -25,8 +25,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.nwt.autoprevoznik.Models.Autoprevoznik;
 import com.nwt.autoprevoznik.Models.Informacije;
 import com.nwt.autoprevoznik.Services.InformacijeService;
-
-@RestController
+@Controller
+@RequestMapping("informacije")
 public class InformacijeController {
 	
 	@Autowired
