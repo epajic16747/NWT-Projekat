@@ -24,8 +24,8 @@ const MenuItemGroup = Menu.ItemGroup;
       }
     //To do validacija na tipa korisnika admin ide posebno
       render() {
-
-        if(localStorage.getItem('prijavljen') != 'true' || localStorage.getItem('prijavljen') == 'undefined') {
+        let a = 50;
+        if((localStorage.getItem('prijavljen') != 'true' || localStorage.getItem('prijavljen') == 'undefined') && a== 30) {
           return (
             <Menu
             onClick={this.handleClick}
