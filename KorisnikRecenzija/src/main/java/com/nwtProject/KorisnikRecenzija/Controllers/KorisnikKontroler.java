@@ -49,9 +49,9 @@ public class KorisnikKontroler {
         }
 	}
 	@GetMapping(value = "/user/{username}/pass/{pass}")
-	public boolean postojilikorisnik
-	  (@PathVariable String username, @PathVariable String pass) {
-	    return korisnikService.postojiKorisnik(username, pass);
+	public ResponseEntity<Boolean> postojilikorisnik
+	  (@PathVariable("username") String username, @PathVariable("pass") String pass) {
+	    return new ResponseEntity<Boolean>(korisnikService.postojiKorisnikPoUsernamePw(username,pass),HttpStatus.OK);
 	}
 	
 	

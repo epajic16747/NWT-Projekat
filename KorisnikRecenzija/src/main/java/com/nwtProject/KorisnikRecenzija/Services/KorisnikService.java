@@ -57,15 +57,22 @@ public class KorisnikService implements IKorisnikService{
     
    
     public boolean postojiKorisnikPoUsername(String username){
-        return korisnikRepo.existsByUsername(username);
+    	List<Korisnik> korisnik = (List<Korisnik>) korisnikRepo.findByUsername(username);
+        if(korisnik.size()!=0) return true;
+        else return false;
+    }
+    public boolean postojiKorisnikPoUsernamePw(String username,String password){
+    	List<Korisnik> korisnik = (List<Korisnik>) korisnikRepo.findByUsernamePw(username,password);
+        if(korisnik.size()!=0) return true;
+        else return false;
     }
     
-    public boolean postojiKorisnik(String username, String password) {
+   /* public boolean postojiKorisnik(String username, String password) {
         Optional<Korisnik> user = KorisnikRepozitorij.findByUsername(username);
         if (((Optional<Korisnik>) user).isPresent() && user.get().getPassword() == password)
         	return true;
         else
         	return false;
     }
-
+*/
 }
