@@ -1,0 +1,20 @@
+server: 
+  port: 10001
+  servlet:
+    context-path: /ui
+    
+
+    session: 
+      cookie:
+       name: UISESSION
+      
+   
+security: 
+   basic:
+     enabled: false
+   oauth2:
+      client:
+        clientId: ClientId
+        clientSecret: secret
+        accessTokenUri: http://localhost:10000/auth/token
+        userAuthorization: http://localhost:10000/auth/token
