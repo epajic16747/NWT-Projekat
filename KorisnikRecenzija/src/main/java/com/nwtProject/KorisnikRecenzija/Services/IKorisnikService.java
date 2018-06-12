@@ -16,6 +16,9 @@ public interface IKorisnikService {
 	boolean postojiKorisnikPoIdu(long idKorisnika);
 	boolean postojiKorisnikPoUsername(String username);
 	boolean postojiKorisnikPoUsernamePw(String username,String pass);
+	
+	Korisnik dajKorisnikaLogin(String username, String password);
+	//String dajRolu(long idKorisnika);
 	//boolean postojiKorisnik(String username, String pass);
 	
 }

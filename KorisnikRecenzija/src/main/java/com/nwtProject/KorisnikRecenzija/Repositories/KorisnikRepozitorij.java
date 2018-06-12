@@ -15,7 +15,12 @@ public interface KorisnikRepozitorij extends CrudRepository<Korisnik, Long> {
     
     @Query("select k from Korisnik k where k.username=:username and k.password=:password")
 	Iterable<Korisnik> findByUsernamePw(@Param("username") String username, @Param("password") String password);
+    
     @Query("select k from Korisnik k where k.username=:username")
 	Iterable<Korisnik> findByUsername(@Param("username") String username);
-	
+    
+    
+    //@Query("SELECT k FROM korisnik k WHERE k.username=:username and k.password=:password")
+    //Korisnik findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    Korisnik findByUsernameAndPassword( String username, String password);
 }

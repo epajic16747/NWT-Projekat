@@ -46,13 +46,17 @@ public class Korisnik {
 	@Column(name="idAutoprevoznika")
 	private int idAutoprevoznika;
 
-	
+    @NotNull
+    @Size(min=10, max=100)
+	@Column(name="role")
+	private String role;
+    
 	protected Korisnik() {
 		
 	}
 	
 	public Korisnik(Long idKorisnika, String username, String password, String email, int idKompanije,
-			int idAutoprevoznika) {
+			int idAutoprevoznika, String role) {
 		//super();
 		this.idKorisnika = idKorisnika;
 		this.username = username;
@@ -60,6 +64,7 @@ public class Korisnik {
 		this.email = email;
 		this.idKompanije = idKompanije;
 		this.idAutoprevoznika = idAutoprevoznika;
+		this.role = role;
 	}
 
 	public Long getIdKorisnika() {
@@ -108,6 +113,14 @@ public class Korisnik {
 
 	public void setIdAutoprevoznika(int idAutoprevoznika) {
 		this.idAutoprevoznika = idAutoprevoznika;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
     @Override

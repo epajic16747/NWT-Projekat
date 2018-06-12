@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -45,7 +46,7 @@ public class KorisnikKontroler {
         }
         catch (Exception ex)
         {
-            throw new IllegalArgumentException("Ne postji korisnik sa trazenim id-em");
+            throw new IllegalArgumentException("Ne postoji korisnik sa trazenim id-em");
         }
 	}
 	@GetMapping(value = "/user/{username}/pass/{pass}")
@@ -62,6 +63,19 @@ public class KorisnikKontroler {
 		return new ResponseEntity<List<Korisnik>>(listaKorisnika, HttpStatus.OK);
 	}
 	
+	//@GetMapping("login/username/{username}/password/{password}")
+	@RequestMapping("/login")
+	public ResponseEntity<Korisnik> dajKorisnikaLogin(@RequestParam ("username") String username, @RequestParam("password") String password) {
+		try {
+			Korisnik k = korisnikService.dajKorisnikaLogin(username, password);
+			return new ResponseEntity<Korisnik>(k, HttpStatus.OK);
+		}
+        catch (Exception ex)
+        {
+            throw new IllegalArgumentException("Ne postji korisnik sa unesenim podacima");
+        }		
+		
+	}
 	@PostMapping("dodajKorisnika")
 	public ResponseEntity<Void> dodajKorisnika(@RequestBody Korisnik korisnik, UriComponentsBuilder builder) {
 		
@@ -113,5 +127,8 @@ public class KorisnikKontroler {
 //	        System.out.println(ex.getClass().getCanonicalName());
 	        throw new IllegalArgumentException("Desila se greska pri brisanju korisnika!");
         }
-	}	
+	}
+	
+	
+	
 }
