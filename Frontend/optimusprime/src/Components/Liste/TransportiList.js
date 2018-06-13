@@ -14,7 +14,8 @@ export class TransportiList extends Component{
                transporti :[
                ],
                loading: false,
-               input : ''
+               input : '',
+               zahtjev : false
            }
 
        }
@@ -33,6 +34,7 @@ export class TransportiList extends Component{
         .then(res => {
         const transporti = res.data;
         this.setState({ transporti });
+        this.setState({ zahtjev : true });
         console.log(transporti)
       })
     }
@@ -91,7 +93,7 @@ export class TransportiList extends Component{
                           <h4>Nemate potrebne privilegije za pretragu!</h4>
                     </Alert>
         }*/
-
+        if(this.state.zahtjev) {
         return(
              <div >
                 <br/>
@@ -110,6 +112,10 @@ export class TransportiList extends Component{
             </div>
 
         )
+    }
+    else {
+        return(<div><h1>Trenutno nema transporta</h1></div>)
+    }
     }
 
 }

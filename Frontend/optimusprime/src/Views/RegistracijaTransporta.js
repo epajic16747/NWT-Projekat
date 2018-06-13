@@ -34,7 +34,7 @@ const { Header, Footer, Sider, Content } = Layout;
                     <MainMenuUser />
 
                     <Content>
-                        <h1 align="center">Registracija kompanije</h1>
+                        <h1 align="center">Dodavanje transporta</h1>
                     <Row>
                     <Col span={12} offset={6}><TransportRegistration/></Col>
                   </Row>

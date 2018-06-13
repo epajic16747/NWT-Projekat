@@ -32,7 +32,27 @@ const FormItem = Form.Item;
 
       if(state.v_username && state.v_password) {
         
-          /*fetch('http://localhost:4000/korisnik/prijava',{
+        if(state.username == "admin"){
+          localStorage.setItem("tipKorisnika", "admin");
+          localStorage.setItem('prijavljen','true');
+          this.setState({uspjesnaPrijava : true, inicijalnoStanje : false})
+        }
+        else if (state.username == "kompanija"){
+          localStorage.setItem("tipKorisnika", "kompanija");
+          localStorage.setItem('prijavljen','true');
+          this.setState({uspjesnaPrijava : true, inicijalnoStanje : false})
+        }
+        else if(state.username == "autoprevoznik"){
+          localStorage.setItem("tipKorisnika", "autoprevoznik"); 
+          localStorage.setItem('prijavljen','true');
+          this.setState({uspjesnaPrijava : true, inicijalnoStanje : false})
+        }
+        else {
+
+        }
+/*
+        
+          fetch('http://localhost:4000/korisnik/prijava',{
               mode : 'cors',
               method: 'POST',
               headers: {
@@ -44,22 +64,22 @@ const FormItem = Form.Item;
                 sifra: state.password,
               })
             })
-          .then((response) => {   */
+          .then((response) => {   
           //  console.log("RESPONSE:", response.json());
             // Neka validacija 
             this.setState({uspjesnaPrijava : true, inicijalnoStanje : false})
             localStorage.setItem('prijavljen', 'true');
-          /*})
+          })
           .catch(ex => {
             console.log('Zahtjev nije poslan serveru: ', ex);
             this.setState({uspjesnaPrijava : false, inicijalnoStanje : false})
-          })*/
+          })
 
           this.setState({
               v_username : false,
               v_password : false
           })
-          //Neke validacije
+          //Neke validacije*/
       }
       else {
           this.setState({uspjesnaPrijava : false, inicijalnoStanje : false})
@@ -73,8 +93,8 @@ const FormItem = Form.Item;
         this.setState({v_username : false})
         return;
     }
-    else if (value.length <= 5) {
-      callback('Korisnicko ime mora imati bar 6 znakova!');
+    else if (value.length <= 3) {
+      callback('Korisnicko ime mora imati bar 4 znakova!');
       this.setState({v_username : false})
       return;
     }
@@ -118,6 +138,9 @@ const FormItem = Form.Item;
 
  handleLogout = () =>{
       localStorage.setItem('prijavljen', 'undefined');
+      localStorage.setItem("tipKorisnika", "undefined");
+      this.setState({uspjesnaPrijava : false, inicijalnoStanje : true})
+
  }
   render(){
     const { getFieldDecorator } = this.props.form;

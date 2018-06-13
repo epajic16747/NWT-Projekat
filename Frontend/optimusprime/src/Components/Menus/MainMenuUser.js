@@ -2,6 +2,7 @@ import React, { Component}  from 'react';
 import { Menu, Icon } from 'antd';
 import {Redirect, Link} from 'react-router-dom';
 import 'antd/dist/antd.css'
+import Divider from 'antd/lib/divider';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -25,7 +26,7 @@ const MenuItemGroup = Menu.ItemGroup;
     //To do validacija na tipa korisnika admin ide posebno
       render() {
         let a = 50;
-        if((localStorage.getItem('prijavljen') != 'true' || localStorage.getItem('prijavljen') == 'undefined') && a== 30) {
+        if(localStorage.getItem('prijavljen') != 'true' || localStorage.getItem('prijavljen') == 'undefined') {
           return (
             <Menu
             onClick={this.handleClick}
@@ -152,54 +153,7 @@ const MenuItemGroup = Menu.ItemGroup;
     } 
     else {
       return (
-        <Menu
-        onClick={this.handleClick}
-        selectedKeys={[this.state.current]}
-        mode="horizontal"
-        theme= "dark"
-        >
-          <Menu.Item key="home">
-            <Link to="/home" >Admin Home</Link>
-          </Menu.Item>
-          <SubMenu title={<span><Icon type="setting" />App users</span>}>
-            <MenuItemGroup title="Useri">
-              <Menu.Item key="kompanije">
-              <Link to="/kompanije">Kompanije</Link>
-              </Menu.Item>
-              <Menu.Item key="autoprevoznici">
-              <Link to="/autoprevoznici">Autoprevoznik</Link>
-              </Menu.Item>   
-              <Menu.Item key="korisnici">
-                <Link to="/korisnici">Korisnici</Link>
-              </Menu.Item>                   
-            </MenuItemGroup>
-            
-          </SubMenu>          
-
-       
-          <Menu.Item key="sviTransporti">
-          <Link to="/sviTransporti">Transporti</Link>
-          </Menu.Item>   
-          <Menu.Item key="kreirajKompaniju">
-            <Link to="/kreirajKompaniju">Kreiraj Kompaniju</Link>
-          </Menu.Item>   
-          <Menu.Item key="kreirajAutoprevoznika">
-            <Link to="/kreirajAutoprevoznika">Kreiraj Autoprevoznika</Link>
-          </Menu.Item>  
-          <Menu.Item key="kreirajTransport">
-            <Link to="/kreirajTransport">Kreiraj Transport</Link>
-          </Menu.Item>  
-          <Menu.Item key="kreirajPonudu">
-            <Link to="/kreirajPonudu">Kreiraj Ponudu</Link>
-          </Menu.Item>  
-          <Menu.Item key="registracijaKorisnika">
-                <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
-              </Menu.Item>             
-                    
-          <Menu.Item key="signIn"  style={{ 'float': 'right'}}>
-          <Link to="/signIn" >Sign In</Link>
-        </Menu.Item>
-        </Menu>
+          <div></div>
       );  
     }   
           
@@ -210,3 +164,7 @@ const MenuItemGroup = Menu.ItemGroup;
 }
 
 
+/*
+
+
+*/ 

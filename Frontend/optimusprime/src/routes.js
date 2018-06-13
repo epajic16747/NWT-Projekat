@@ -11,6 +11,7 @@ import {RegistracijaTransporta} from './Views/RegistracijaTransporta.js'
 import {Korisnici} from './Views/Korisnici.js';
 import { Kompanije } from './Views/Kompanije';
 import { Autoprevoznici } from './Views/Autoprevoznici';
+import { Transporti } from './Views/Transporti';
 
 
 
@@ -29,6 +30,8 @@ import { Autoprevoznici } from './Views/Autoprevoznici';
             <Route path="/korisnici" component={Korisnici}/>    
             <Route path="/kompanije" component={Kompanije} />           
             <Route path="/autoprevoznici" component={Autoprevoznici} />
+            <Route path="/sviTransporti" component={Transporti} />
+            <Route path="/transporti" component={Transporti} />
 
 
         </Switch>
