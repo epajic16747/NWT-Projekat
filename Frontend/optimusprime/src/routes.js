@@ -6,6 +6,7 @@ import App from './Components/App.js';
 import {UserRegistration} from './Views/UserRegistration.js';
 import {RegistracijaKompanije} from './Views/RegistracijaKompanije.js';
 import {RegistracijaAutoprevoznika} from './Views/RegistracijaAutoprevoznika.js';
+import {RegistracijaPonude} from './Views/RegistracijaPonude.js';
 import {RegistracijaTransporta} from './Views/RegistracijaTransporta.js'
 import {Korisnici} from './Views/Korisnici.js';
 import { Kompanije } from './Views/Kompanije';
@@ -24,6 +25,7 @@ import { Autoprevoznici } from './Views/Autoprevoznici';
             <Route path="/kreirajKompaniju" component={RegistracijaKompanije}/>     
             <Route path="/kreirajAutoprevoznika" component={RegistracijaAutoprevoznika}/>   
             <Route path="/kreirajTransport" component={RegistracijaTransporta}/>   
+            <Route path="/kreirajPonudu" component={RegistracijaPonude}/>   
             <Route path="/korisnici" component={Korisnici}/>    
             <Route path="/kompanije" component={Kompanije} />           
             <Route path="/autoprevoznici" component={Autoprevoznici} />
