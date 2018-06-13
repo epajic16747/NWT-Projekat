@@ -28,10 +28,11 @@ const FormItem = Form.Item;
       
       e.preventDefault();
       const state = this.state;
+      console
 
       if(state.v_username && state.v_password) {
         
-          fetch('http://localhost:4000/korisnik/prijava',{
+          /*fetch('http://localhost:4000/korisnik/prijava',{
               mode : 'cors',
               method: 'POST',
               headers: {
@@ -43,16 +44,16 @@ const FormItem = Form.Item;
                 sifra: state.password,
               })
             })
-          .then((response) => {   
-            console.log("RESPONSE:", response.json());
+          .then((response) => {   */
+          //  console.log("RESPONSE:", response.json());
             // Neka validacija 
             this.setState({uspjesnaPrijava : true, inicijalnoStanje : false})
             localStorage.setItem('prijavljen', 'true');
-          })
+          /*})
           .catch(ex => {
             console.log('Zahtjev nije poslan serveru: ', ex);
             this.setState({uspjesnaPrijava : false, inicijalnoStanje : false})
-          })
+          })*/
 
           this.setState({
               v_username : false,
