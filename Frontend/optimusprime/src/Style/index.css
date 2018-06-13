@@ -3,3 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.row_pregled_transporta{
+	padding-left: 5rem;
+}
+.col_pregled_transporta{
+	margin-bottom: 2rem;
+}

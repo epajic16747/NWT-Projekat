@@ -67,6 +67,12 @@ public class KorisnikService implements IKorisnikService{
         else return false;
     }
     
+    public Korisnik dajKorisnikaLogin(String username, String password) {
+    	Korisnik k = korisnikRepo.findByUsernameAndPassword(username, password);
+    	
+    	return k;
+    }
+    
    /* public boolean postojiKorisnik(String username, String password) {
         Optional<Korisnik> user = KorisnikRepozitorij.findByUsername(username);
         if (((Optional<Korisnik>) user).isPresent() && user.get().getPassword() == password)
@@ -75,4 +81,5 @@ public class KorisnikService implements IKorisnikService{
         	return false;
     }
 */
+
 }

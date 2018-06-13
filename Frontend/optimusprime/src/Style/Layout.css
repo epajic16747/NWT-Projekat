@@ -5,3 +5,14 @@
     background-image: url('../assets/PageImages/formBackgroundPicture.jpg');
 
 }
+.pregled_ponuda_btn{
+	margin: 0 auto;
+    text-align: center;
+    display: block;
+    width: 30%;
+    padding: 1rem;
+    background: white;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: EurekaServiceRegistry
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Dzenan
+Built-By: ENIS
 Implementation-Vendor-Id: com.nwtProject
-Build-Jdk: 1.8.0_144
+Build-Jdk: 1.8.0_161
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/EurekaServiceRegistry
 Created-By: Maven Integration for Eclipse
