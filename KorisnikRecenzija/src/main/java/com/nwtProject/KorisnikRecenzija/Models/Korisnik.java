@@ -2,12 +2,22 @@ package com.nwtProject.KorisnikRecenzija.Models;
 
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+import com.nwtProject.KorisnikRecenzija.Models.Role;
 
 import java.util.Optional;
 
@@ -46,17 +56,19 @@ public class Korisnik {
 	@Column(name="idAutoprevoznika")
 	private int idAutoprevoznika;
 
-    @NotNull
-    @Size(min=10, max=100)
-	@Column(name="role")
-	private String role;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
     
 	protected Korisnik() {
 		
 	}
 	
 	public Korisnik(Long idKorisnika, String username, String password, String email, int idKompanije,
-			int idAutoprevoznika, String role) {
+			int idAutoprevoznika) {
 		//super();
 		this.idKorisnika = idKorisnika;
 		this.username = username;
@@ -64,7 +76,7 @@ public class Korisnik {
 		this.email = email;
 		this.idKompanije = idKompanije;
 		this.idAutoprevoznika = idAutoprevoznika;
-		this.role = role;
+
 	}
 
 	public Long getIdKorisnika() {
@@ -115,13 +127,13 @@ public class Korisnik {
 		this.idAutoprevoznika = idAutoprevoznika;
 	}
 	
-	public String getRole() {
-		return role;
-	}
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 	
     @Override
     public String toString() {
