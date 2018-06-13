@@ -137,6 +137,9 @@ const MenuItemGroup = Menu.ItemGroup;
           <Menu.Item key="kreirajTransport">
             <Link to="/kreirajTransport">Kreiraj Transport</Link>
           </Menu.Item>  
+          <Menu.Item key="kreirajPonudu">
+            <Link to="/kreirajPonudu">Kreiraj Ponudu</Link>
+          </Menu.Item>  
           <Menu.Item key="registracijaKorisnika">
                 <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
               </Menu.Item>             
@@ -184,7 +187,10 @@ const MenuItemGroup = Menu.ItemGroup;
             <Link to="/kreirajAutoprevoznika">Kreiraj Autoprevoznika</Link>
           </Menu.Item>  
           <Menu.Item key="kreirajTransport">
-            <Link to="/kreirajTransport">Kreiraj Transporti</Link>
+            <Link to="/kreirajTransport">Kreiraj Transport</Link>
+          </Menu.Item>  
+          <Menu.Item key="kreirajPonudu">
+            <Link to="/kreirajPonudu">Kreiraj Ponudu</Link>
           </Menu.Item>  
           <Menu.Item key="registracijaKorisnika">
                 <Link to="/registracijaKorisnika">Registracija Korisnika</Link>
