@@ -29,7 +29,7 @@ class AutoprevoznikRegistration extends Component {
           
           cijena_max : '',
           datum : '',
-          autoprevoznik : ['NWT Autoprevoznik', 'In time express', 'DHL', 'Euro express', 'Sarajevo transport'],
+          autoprevoznikArray : ['NWT Autoprevoznik', 'In time express', 'DHL', 'Euro express', 'Sarajevo transport'],
           status: '',
           kompanija : ['NWT Autoprevoznik', 'In time express', 'DHL', 'Euro express', 'Sarajevo transport'],
           naziv: '',
@@ -37,10 +37,10 @@ class AutoprevoznikRegistration extends Component {
 
           //Validacija
           v_cijena_max: false,
-          v_datum : false, 
-          v_autoprevoznik: false,
-          v_status: false,
-          v_kompanija : false, 
+          v_datum : true, 
+          v_autoprevoznik: true,
+          v_status: true,
+          v_kompanija : true, 
           v_naziv: false,
 
 
@@ -63,8 +63,8 @@ class AutoprevoznikRegistration extends Component {
  
         else {
           this.setState({
-              naziv : value,
-              v_naziv: true
+              cijena_max : value,
+              v_cijena_max: true
           })
           callback();
           return;
@@ -72,22 +72,22 @@ class AutoprevoznikRegistration extends Component {
 
         
     }
-    validateStatus = (rule,value, callback) => {
+    validateNaziv = (rule,value, callback) => {
         if(value == ""){   
-            callback('Molimo Vas da unesite opis status transporta!');
+            callback('Molimo Vas da unesite naziv status transporta!');
             this.setState({v_opis: false})
             return;
         }
-        else if (value !== 'aktivna' || value !== 'neaktivna') {
-          callback('Stutus mora biti aktivna ili neaktivna!');
+        else if (value.lenth < 5) {
+          callback('Naziv transporta mora biti barem 5 znakova!');
           this.setState({v_opis : false})
           return;
         }
       
         else {
           this.setState({
-              opis: value,
-              v_opis : true
+              naziv: value,
+              v_naziv : true
           })
           callback();
           return;
@@ -100,7 +100,7 @@ class AutoprevoznikRegistration extends Component {
         console.log("BIND STATE za fetch");
         const state = this.state;
         console.log("STATE: ", state);
-        if(state.v_naziv && state.v_opis && state.v_adresa && state.v_email && state.v_telefon) {
+        if(state.v_naziv && state.v_cijena_max) {
             console.log("USAO U IF");
             fetch('url-dodajAutoprevoznika',{
                 mode : 'cors',
@@ -174,7 +174,7 @@ class AutoprevoznikRegistration extends Component {
      
                 
             >
-                {getFieldDecorator('naziv', {
+                {getFieldDecorator('max_cijena', {
                     rules: [
                         {
                         validator : this.validateCijenaMax,
@@ -191,12 +191,7 @@ class AutoprevoznikRegistration extends Component {
      
                 
             >
-                {getFieldDecorator('opis', {
-                    rules: [
-                        {
-                        validator : this.validateOpis,
-                        }
-                    ]
+                {getFieldDecorator('datum_transporta', {
                 })(
                    
                     <DatePicker />
@@ -204,52 +199,66 @@ class AutoprevoznikRegistration extends Component {
             </FormItem>  
             <FormItem
                 {...formItemLayout}
-                label="Adresa:"
+                label="Autoprevoznik:"
      
                 
             >
-                {getFieldDecorator('adresa', {
-                    rules: [
-                        {
-                        validator : this.validateAdresa,
-                        }
-                    ]
+                {getFieldDecorator('autoprevoznik', {
                 })(
-                    <Input placeholder ="Unesite adresu autoprevoznika..."/>
+                    <Select>
+                    {this.state.autoprevoznikArray.map((ime) => {
+                        return <Option value={ime}>{ime}</Option>
+                    })}
+                  </Select>
                 )}
             </FormItem>    
             <FormItem
                 {...formItemLayout}
-                label="Telefon:"
+                label="Status:"
      
                 
             >
-                {getFieldDecorator('telefon', {
-                    rules: [
-                        {
-                        validator : this.validateTelefon,
-                        }
-                    ]
-                })(
-                    <Input placeholder ="Unesite telefon autoprevoznika..."/>
-                )}
+                    {getFieldDecorator('status', {
+                    })(
+                        <Select>
+                            <Option value="aktivan">aktivan</Option>
+                            <Option value="neaktivan">neaktivan</Option>
+
+                      </Select>
+                    )}
             </FormItem>                                
                             
             <FormItem
                 {...formItemLayout}
-                label="Email:"                
+                label="Kompanija:"                
             >
-                {getFieldDecorator('email', 
+                {getFieldDecorator('kompanija', 
                 {
-                    rules: [
-                        {
-                        validator : this.validateEmail,
-                        },
-                    ]
                 })(
-                    <Input  placeholder ="Email autoprevoznika..."/>
+                    <Select>
+                    {this.state.kompanija.map((ime) => {
+                        return <Option value={ime}>{ime}</Option>
+                    })}
+                  </Select>
                 )}
             </FormItem> 
+
+            <FormItem
+                {...formItemLayout}
+                label="Naziv transporta:"
+     
+                
+            >
+                {getFieldDecorator('naziv transporta', {
+                    rules: [
+                        {
+                        validator : this.validateNaziv,
+                        }
+                    ]
+                })(
+                    <Input placeholder ="Naziv transporta..."/>
+                )}
+            </FormItem>
 
 
             <Button  type="primary" htmlType="submit">
@@ -258,6 +267,7 @@ class AutoprevoznikRegistration extends Component {
                 {responseMessage}
       
         </Form>
+        
     );
   }
 
