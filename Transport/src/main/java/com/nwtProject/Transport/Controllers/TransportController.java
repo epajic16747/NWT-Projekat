@@ -37,9 +37,8 @@ public class TransportController {
 		Transport transport= transportService.dajTransport(id);
 		return new ResponseEntity<Transport>(transport, HttpStatus.OK);
 	}
+
 	
-	@Autowired
-	private RabbitTemplate rabbitTemplate;
 	@GetMapping("transporti")
 	public ResponseEntity<List<Transport>>dajSveTransporte() {
 		List<Transport> listaTransporta = transportService.dajSveTransporte();
@@ -57,7 +56,7 @@ public class TransportController {
         	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }*/
 		transportService.dodajTransport(transport);
-	    rabbitTemplate.convertAndSend("transporti-exchange","transporti.created.#",transport.getIdTransporta() +";" +transport.getCijenaMax()+";"+ transport.getDatum()+ ";"+transport.getIdAutoprevoznika()+";"+ transport.getIdKompanije()+";"+ transport.getNaziv()+";" +";create");
+		
 		return new ResponseEntity(transport, HttpStatus.OK);
 		//VIdi u testiranju sta ovaj dio radi
         //HttpHeaders headers = new HttpHeaders();
@@ -68,15 +67,12 @@ public class TransportController {
 	@PutMapping("azurirajTransport")
 	public ResponseEntity<Transport> azurirajTransport(@RequestBody Transport transport) {
 		transportService.azurirajTransport(transport);
-		rabbitTemplate.convertAndSend("transporti-exchange","transporti.created.#",transport.getIdTransporta() +";" +transport.getCijenaMax()+";"+ transport.getDatum()+ ";"+transport.getIdAutoprevoznika()+";"+ transport.getIdKompanije()+";"+ transport.getNaziv()+";" +";update");
-
 		return new ResponseEntity<Transport>(transport, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("obrisi/{id}")
 	public ResponseEntity<Void> obrisiTransport(@PathVariable("id") Integer id) {
 		transportService.obrisiTransport(id);
-	    rabbitTemplate.convertAndSend("transporti-exchange", "transporti.deleted.#", id+";delete");
 
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		
