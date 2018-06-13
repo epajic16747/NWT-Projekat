@@ -10,6 +10,7 @@ import {Korisnici} from './Views/Korisnici.js';
 import { Kompanije } from './Views/Kompanije';
 import { Autoprevoznici } from './Views/Autoprevoznici';
 import { Transporti } from './Views/Transporti';
+import { TransportPonude } from './Views/TransportPonude';
 
 
  export const routes = ( 
@@ -26,6 +27,7 @@ import { Transporti } from './Views/Transporti';
             <Route path="/korisnici" component={Korisnici}/>    
             <Route path="/kompanije" component={Kompanije} />           
             <Route path="/autoprevoznici" component={Autoprevoznici} />   
+            <Route path="/transportponude" component={TransportPonude} />   
 
         </Switch>
     </BrowserRouter>

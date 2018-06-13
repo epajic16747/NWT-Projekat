@@ -4,15 +4,15 @@ import { FooterC } from '../Components/Menus/FooterC';
 import { Row, Col } from 'antd';
 import { Layout } from 'antd';
 import AutoprevoznikRegistration from '../Components/Forms/AutoprevoznikRegistration.js';
-import {TransportiList} from '../Components/Liste/TransportiList.js';
-import { Link } from 'react-router-dom'
-
+import {TransportPonudeList} from '../Components/Liste/TransportPonudeList.js';
+import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import '../Style/Layout.css';
+import { Link } from 'react-router-dom'
 
 const { Header, Footer, Sider, Content } = Layout;
 
 
- export class Transporti extends Component {
+ export class TransportPonude extends Component {
 
     constructor(){
       super()
@@ -36,15 +36,14 @@ const { Header, Footer, Sider, Content } = Layout;
                     <MainMenuUser />
 
                     <Content>
-                        <h1 align="center">Pregled transporta: </h1>
+                        <h1 align="center">Pregled ponuda: </h1>
                     <Row>
-                     <Col span={24} ><TransportiList/></Col>
+                     <Col span={24} ><TransportPonudeList/></Col>
 
                   </Row>
-                  <Row>
-                     <Link to="/transportponude" className="pregled_ponuda_btn">Pregled ponuda</Link>
-                  </Row>
+
                     </Content>
+
                     <FooterC/>
                 </Layout>
                     <Sider>Right Sider</Sider>
