@@ -170,7 +170,7 @@ class AutoprevoznikRegistration extends Component {
         <Form onSubmit={this.handleSubmit}>
             <FormItem
                 {...formItemLayout}
-                label="Unesite maksimalnu cijenu transporta:"
+                label="Maksimalna cijena transporta:"
      
                 
             >
