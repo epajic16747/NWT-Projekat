@@ -9,6 +9,8 @@ import {RegistracijaAutoprevoznika} from './Views/RegistracijaAutoprevoznika.js'
 import {Korisnici} from './Views/Korisnici.js';
 import { Kompanije } from './Views/Kompanije';
 import { Autoprevoznici } from './Views/Autoprevoznici';
+import { Transporti } from './Views/Transporti';
+
 
  export const routes = ( 
     
@@ -18,6 +20,7 @@ import { Autoprevoznici } from './Views/Autoprevoznici';
             <Route path="/home" component={Home}/> 
             <Route path="/signIn" render={(props) =>( <ModalForm {...props} forma={""}/>)}/>         
             <Route path="/registracijaKorisnika" component={UserRegistration}/>     
+            <Route path="/sviTransporti" component={Transporti}/>     
             <Route path="/kreirajKompaniju" component={RegistracijaKompanije}/>     
             <Route path="/kreirajAutoprevoznika" component={RegistracijaAutoprevoznika}/>   
             <Route path="/korisnici" component={Korisnici}/>    
